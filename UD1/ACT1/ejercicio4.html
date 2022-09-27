@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+        let valores = introducirValores();
+
+        for(valor of valores){
+            console.log(valor);
+        }
+
+        function validaOperador(operador){
+            let operandos = ["+", "-", "*", "%", "FIN"]
+            
+            return operandos.includes(operador);
+        };
+
+        function divisionValida(dividendo, divisor){
+            return divisor != 0;
+        };
+
+        function introducirValores(){
+            let arrayParametros = [];
+            let operadorValido
+            let divisionEsValida = true;
+            let operando1;
+            let operando2;
+            let operador;
+
+            do{
+                
+                 operando1 = prompt("Escribe un numero");
+                 operando2 = prompt("Escribe un numero");
+                 operador = prompt("Escribe un operando");
+
+                operadorValido = validaOperador(operador);
+                if(operador == "/"){
+                   divisionEsValida = divisionValida(operando1, operando2);
+                }
+
+
+            }while(!operadorValido && !divisionEsValida)
+            arrayParametros.push(operando1, operando2, operador)
+
+            return arrayParametros;
+
+        }
+    </script>
+</body>
+</html>

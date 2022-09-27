@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const MINIMO = 1;
+        const MAXIMO = 100;
+       let numeroElegido = pedirNumero()
+
+       //let  numeroElegido = prompt("Escribe un numero entre 1 y 100");
+        console.log(esDivisiblePrint(numeroElegido));
+       function esDivisiblePrint(numeroElegido){
+        let resultado = "";
+        resultado +=((esDivisible(numeroElegido, 2))? " 2 ": " ");
+        resultado +=((esDivisible(numeroElegido, 3))? " 3 ": " ");
+       resultado +=((esDivisible(numeroElegido, 5))? " 5 ": " ");
+       resultado +=((esDivisible(numeroElegido, 10))? " 10 ": " ");
+       return resultado;
+       }
+       
+       function esDivisible(dividendo, divisor){
+        return dividendo % divisor == 0;
+       }
+
+        function pedirNumero(){
+            let resultado;
+            do{
+                resultado = prompt("Escribe un numero entre 1 y 100");
+
+            }while(!((resultado > MINIMO) && (resultado < MAXIMO)))
+            return resultado
+        }
+    </script>
+    
+</body>
+</html>
