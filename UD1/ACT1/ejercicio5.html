@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let contador =0;
+        let correcto = false;
+        const nombres = ['pepe', 'paco', 'juan', 'benito', 'manuel'];
+        const contrasenas = ['12345', '23456', '09876', '67890', '666666'];
+        let nombre;
+        do{
+            do{
+
+            nombre = prompt("Nombre de usuario");
+            }while( !existeLogin(nombre) && contador< 5)
+        if(contador < 5){
+            let contrasena = prompt("Contraseña");
+             console.log( passwordCorrecto(contrasena, nombre)? "Correcto" :"ERROR");
+        }
+        
+
+
+       
+
+        }while(contador < 5 && !correcto)
+
+        function existeLogin(login){
+            if(nombres.includes(login)){
+                return true;
+            }else{
+                contador++
+                return false;
+            }
+            //return nombres.includes(login);
+        }
+
+        function passwordCorrecto(password, login){
+            let position = nombres.indexOf(login);
+            if(contrasenas[position] == password){
+                correcto =true;
+                return true;
+            }else{
+                contador++;
+                return false;
+            } 
+        }
+
+    </script>
+</body>
+</html>

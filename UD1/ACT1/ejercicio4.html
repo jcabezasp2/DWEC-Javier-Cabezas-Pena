@@ -8,21 +8,39 @@
 </head>
 <body>
     <script>
-        
-        let valores = introducirValores();
+        let valores;
+        do{
+            valores = introducirValores();
 
-        for(valor of valores){
-            console.log(valor);
+        switch(valores[2]){
+            case "+": console.log(valores[0] + "+" + valores[1] + "=" + (parseInt(valores[0]) + parseInt(valores[1])))
+            break;
+            case "-": console.log(valores[0] + "-" + valores[1] + "=" + (parseInt(valores[0]) - parseInt(valores[1])))
+            break;
+            case "*": console.log(valores[0] + "*" + valores[1] + "=" + (parseInt(valores[0]) * parseInt(valores[1])))
+            break;
+            case "/": console.log(valores[0] + "/" + valores[1] + "=" + (parseInt(valores[0]) / parseInt(valores[1])))
+            break;
+            case "FIN": 
+            break;
         }
-
+        }while(valores[2] != "FIN")
+        
+        
         function validaOperador(operador){
-            let operandos = ["+", "-", "*", "%", "FIN"]
-            
+            let operandos = ["+", "-", "*", "/", "FIN"]
+            if(!operandos.includes(operador)){
+                alert("ERROR. Operador no valido");
+            }
             return operandos.includes(operador);
         };
 
         function divisionValida(dividendo, divisor){
+            if(divisor == 0){
+                alert("ERROR. Divisor no valido");
+            }
             return divisor != 0;
+            
         };
 
         function introducirValores(){
@@ -45,7 +63,7 @@
                 }
 
 
-            }while(!operadorValido && !divisionEsValida)
+            }while(!operadorValido || !divisionEsValida)
             arrayParametros.push(operando1, operando2, operador)
 
             return arrayParametros;

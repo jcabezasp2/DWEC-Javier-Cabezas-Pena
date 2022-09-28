@@ -11,11 +11,10 @@
         let numeroElegido = prompt('Introduce un numero');
        console.log(tablaMultiplicar(numeroElegido));
 
-
         function tablaMultiplicar(entero){
             resultado = ''
             for(let i = 1; i <= 10; i++){
-                resultado += i + " x " + entero + " = " + (entero*i) + "\n";
+                resultado = i + " x " + entero + " = " + (entero*i) + "\n";
             }
 
             return resultado
