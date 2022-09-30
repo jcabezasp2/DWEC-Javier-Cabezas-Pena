@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 1</title>
+</head>
+
+<body>
+    <script>
+        const cantidad = pedirCantidad("¿Qué cantidad desea convertir?");
+        const cantidadInicial = pedirCantidad("¿Cuántas monedas de cada tipo tenemos inicialmente?");
+
+
+        let cantidadRestante = cantidad * 100;
+        const monedas = [200, 100, 50, 20, 10, 5, 2, 1];
+        const cajaMonedas =[];
+        inicializaMonedas(cantidadInicial);
+        console.table(cajaMonedas);
+        let resultado = cantidad + " euros son ";
+
+        for (let i = 0; i < monedas.length; i++) {
+            if (Math.trunc((cantidadRestante / monedas[i])) > 0) {
+                resultado +=(Math.trunc(cantidadRestante /monedas[i]) + " x "+ ((monedas[i] >= 100)? monedas[i] / 100 + " euros ": monedas[i]+" centimos ") );
+                cantidadRestante = cantidadRestante % monedas[i];
+            }
+
+        }
+
+        console.log(resultado);
+
+        function pedirCantidad(mensaje) {
+            let correcto;
+            let resultado;
+            do {
+                resultado = prompt(mensaje);
+                if (isNaN(resultado)) {
+                    if (resultado == 'FIN' || resultado == 'fin') {
+                        break;
+                    } else {
+                        alert("Debe introducirse un numero");
+                        correcto = false;
+                    }
+
+                } else {
+                    correcto = true;
+                }
+            } while (!correcto)
+
+            return resultado;
+        }
+
+        function inicializaMonedas(cantidadInicial){
+
+            for(let i = 0; i < monedas.length; i++){
+                cajaMonedas.push(Number.parseInt(cantidadInicial));
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>
