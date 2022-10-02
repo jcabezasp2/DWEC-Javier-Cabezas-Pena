@@ -10,35 +10,45 @@
 
 <body>
     <script>
-        const cantidad = pedirCantidad();
-        let cantidadRestante = cantidad * 100;
         const monedas = [200, 100, 50, 20, 10, 5, 2, 1];
-        let resultado = cantidad + " euros son ";
+        let cantidad;
+        let arrayResultado;
+        let cadenaResultado
+        do {
 
-        for (let i = 0; i < monedas.length; i++) {
-            if (Math.trunc((cantidadRestante / monedas[i])) > 0) {
-                resultado +=(Math.trunc(cantidadRestante /monedas[i]) + " x "+ ((monedas[i] >= 100)? monedas[i] / 100 + " euros ": monedas[i]+" centimos ") );
-                cantidadRestante = cantidadRestante % monedas[i];
+            cantidad = pedirCantidad();
+            if (cantidad == "FIN" || cantidad == "fin") {
+                break;
             }
+            arrayResultado = pasoAMonedas(cantidad);
+            cadenaResultado = toString(cantidad, arrayResultado, monedas);
+            console.log(cadenaResultado);
+        } while (true)
 
-        }
 
-        console.log(resultado);
+
 
         function pedirCantidad() {
-            let correcto;
+            let correcto = false;
             let resultado;
             do {
                 resultado = prompt("¿Qué cantidad desea convertir?");
+                if (resultado.includes(",")) {
+                    resultado = resultado.replace(",", ".");
+                }
+
                 if (isNaN(resultado)) {
                     if (resultado == 'FIN' || resultado == 'fin') {
                         break;
-                    } else {
+                    }
+                     else {
                         alert("Debe introducirse un numero");
-                        correcto = false;
                     }
 
-                } else {
+                }else if(resultado <= 0){
+                    alert("Debe introducirse un numero mayor de 0");
+                }
+                 else {
                     correcto = true;
                 }
             } while (!correcto)
@@ -46,6 +56,28 @@
             return resultado;
         }
 
+        function pasoAMonedas(cantidad) {
+            let resultado = new Array();
+            let cantidadRestante =Math.round(cantidad * 100);
+            console.log(cantidadRestante)
+            for (let i = 0; i < monedas.length; i++) {
+                resultado.push(Math.trunc(cantidadRestante / monedas[i]));
+                cantidadRestante = cantidadRestante % monedas[i];
+                console.log(cantidadRestante);
+
+            }
+            return resultado;
+        }
+
+        function toString(cantidad, arrayResultado) {
+            let resultado = cantidad + " euros son "
+            for (let i = 0; i < monedas.length; i++) {
+                if (arrayResultado[i] > 0) {
+                    resultado += arrayResultado[i] + " x " + (monedas[i] >= 200 ? " 2 euros " : (monedas[i] == 100) ? "1 euro" : (monedas[i] > 1) ? monedas[i] + " céntimos" : " 1 céntimo") + " ";
+                }
+            }
+            return resultado;
+        }
     </script>
 
 </body>
