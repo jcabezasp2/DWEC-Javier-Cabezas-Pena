@@ -21,7 +21,7 @@
                 break;
             }
             arrayResultado = pasoAMonedas(cantidad);
-            cadenaResultado = toString(cantidad, arrayResultado, monedas);
+            cadenaResultado = toString(cantidad, arrayResultado);
             console.log(cadenaResultado);
         } while (true)
 
@@ -73,7 +73,7 @@
             let resultado = cantidad + " euros son "
             for (let i = 0; i < monedas.length; i++) {
                 if (arrayResultado[i] > 0) {
-                    resultado += arrayResultado[i] + " x " + (monedas[i] >= 200 ? " 2 euros " : (monedas[i] == 100) ? "1 euro" : (monedas[i] > 1) ? monedas[i] + " céntimos" : " 1 céntimo") + " ";
+                    resultado += arrayResultado[i] + " x " + (monedas[i] == 200 ? " 2 euros " : (monedas[i] == 100) ? "1 euro" : (monedas[i] > 1) ? monedas[i] + " céntimos" : " 1 céntimo") + " ";
                 }
             }
             return resultado;
