@@ -8,29 +8,28 @@
 </head>
 <body>
     <script>
-        let entero = prompt("Introduce un numero entero positivo");
-     
+
+        let entero;
+
         do{
+
+            entero = prompt("Introduce un numero entero positivo");
+
             if(!esEntero(entero)){
-            console.log("Error, debe introducir un numero entero")
-            entero = prompt("Introduce un numero entero positivo");
-        }
-        }while(!esEntero(entero))
+
+                console.log("Error, debe introducir un numero entero");
+
+            }else if(!esPositivo(entero)){
+
+                console.log("Error, debe introducir un numero positivo");    
+
+            }
+                     
+        }while(!esEntero(entero) || !esPositivo(entero))
+      
         
-        do{
-            if(!esPositivo(entero)){
-            console.log("Error, debe introducir un numero positivo")
-            entero = prompt("Introduce un numero entero positivo");
-        }
-        }while(!esPositivo(entero))
-
-
         let suma = sumatorio(entero);
-        console.log("El sumatorio es " + suma);
-
-
-
-
+        console.log("El sumatorio de " + entero + " es " + suma);
 
 
         function sumatorio(numero) {
@@ -40,6 +39,7 @@
             for(let i = 1; i <= numero; i++){
                 resultado += i;
             }
+            
             return resultado;
         }
 
@@ -53,6 +53,7 @@
 
             return resultado;
         }
+
 
         function esPositivo(numero){
             resultado = false;

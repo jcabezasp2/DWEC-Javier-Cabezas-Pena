@@ -1,55 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <script>
-        let contador =0;
+        let contador = 1;
         let correcto = false;
-        const nombres = ['pepe', 'paco', 'juan', 'benito', 'manuel'];
-        const contrasenas = ['12345', '23456', '09876', '67890', '666666'];
+        const NOMBRES = ['pepe', 'paco', 'juan', 'benito', 'manuel'];
+        const CONTRASENAS = ['12345', '23456', '09876', '67890', '666666'];
+        const MAX_INTENTOS = Number.parseInt(5);
         let nombre;
-        do{
-            do{
-
-            nombre = prompt("Nombre de usuario");
-            }while( !existeLogin(nombre) && contador< 5)
-        if(contador < 5){
-            let contrasena = prompt("Contraseña");
-             console.log( passwordCorrecto(contrasena, nombre)? "Correcto" :"ERROR");
-        }
         
+            do {
+
+                nombre = prompt("Nombre de usuario");
+            } while (!existeLogin(nombre) && contador <= MAX_INTENTOS)
+            
+            while(!correcto && contador <= MAX_INTENTOS){
+                let contrasena = prompt("Contraseña");
+                alert(passwordCorrecto(contrasena, nombre) ? "El nombre de usuario y la contraseña son correctas" : "El nombre de usuario no coincide con la contraseña");
+            }
+
+            if(contador > MAX_INTENTOS){
+                alert("Agotados los intentos");
+            }
 
 
-       
-
-        }while(contador < 5 && !correcto)
-
-        function existeLogin(login){
-            if(nombres.includes(login)){
+        function existeLogin(login) {
+            if (NOMBRES.includes(login)) {
                 return true;
-            }else{
+            } else {
+                alert("El nombre de usuario no existe");
+                console.log("Quedan " + (MAX_INTENTOS - contador) + (((MAX_INTENTOS - contador) > 1)? " intentos": " intento"));
                 contador++
                 return false;
             }
-            //return nombres.includes(login);
         }
 
-        function passwordCorrecto(password, login){
-            let position = nombres.indexOf(login);
-            if(contrasenas[position] == password){
-                correcto =true;
+        function passwordCorrecto(password, login) {
+            let position = NOMBRES.indexOf(login);
+            if (CONTRASENAS[position] == password) {
+                correcto = true;
                 return true;
-            }else{
+            } else {
+                console.log("Quedan " + (MAX_INTENTOS - contador) + (((MAX_INTENTOS - contador) > 1)? " intentos": " intento"));
                 contador++;
                 return false;
-            } 
+            }
         }
 
     </script>
 </body>
+
 </html>

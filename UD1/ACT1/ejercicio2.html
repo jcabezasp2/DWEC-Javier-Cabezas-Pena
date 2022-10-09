@@ -8,41 +8,50 @@
 </head>
 <body>
     <script>
-
+        const CRECIENTE = "Los numeros estan en orden creciente"
+        const NO_CRECIENTE = "Los numeros no estan en orden creciente"
         let n1 = pedirNumero("primer");
         let n2 = pedirNumero("segundo");
         let n3 = pedirNumero("tercer");
         let n4 = pedirNumero("cuarto");
-        console.log(ordenCreciente(n1, n2, n3, n4)? "Verdadero": "Falso")
+        console.log(ordenCreciente(n1, n2, n3, n4)? CRECIENTE: NO_CRECIENTE)
 
         function ordenCreciente(n1, n2, n3, n4){
+
             return n1 <= n2 && n2 <= n3 && n3 <= n4;
         }
 
         function pedirNumero(posicion){
+
             let resultado;
+
             do{
+
                 resultado = prompt("Escribe el " + posicion + " numero");
+
             }while(!esEnteroPositivo(resultado))
+
             return resultado
+
         }
 
         function esEnteroPositivo(num){
             resultado = true;
 
             if(num != parseInt(num)){
+
                 resultado = false;
                 alert("Debe introducir un numero entero");
-            }
-            
-            if(num < 0){
+
+            }else if(num < 0){
+
                 resultado = false;
                 alert("Debe introducir un numero mayor de cero");
+
             }
+
             return resultado;
         }
-
-
     </script>
 </body>
 </html>

@@ -1,41 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <script>
         const MINIMO = 1;
         const MAXIMO = 100;
-       let numeroElegido = pedirNumero()
+        const DIVISORES = [2, 3, 5, 10]
+        let numeroElegido = pedirNumero()
+        let divisoresResultado = esDivisibleArray(numeroElegido);
+        console.log(print(divisoresResultado, numeroElegido));
 
-       //let  numeroElegido = prompt("Escribe un numero entre 1 y 100");
-        console.log(esDivisiblePrint(numeroElegido));
-       function esDivisiblePrint(numeroElegido){
-        let resultado = "";
-        resultado +=((esDivisible(numeroElegido, 2))? " 2 ": " ");
-        resultado +=((esDivisible(numeroElegido, 3))? " 3 ": " ");
-       resultado +=((esDivisible(numeroElegido, 5))? " 5 ": " ");
-       resultado +=((esDivisible(numeroElegido, 10))? " 10 ": " ");
-       return resultado;
-       }
-       
-       function esDivisible(dividendo, divisor){
-        return dividendo % divisor == 0;
-       }
+        function esDivisibleArray(numeroElegido) {
+            let resultado = [];
 
-        function pedirNumero(){
+            DIVISORES.forEach(divisor => {
+
+                if (esDivisible(numeroElegido, divisor)) {
+                    resultado.push(divisor)
+                }
+
+            });
+
+            return resultado;
+        }
+
+        function print(divisoresResultado, numeroElegido) {
+
+            let resultado = "";
+
+            if (divisoresResultado.length >= 1) {
+                resultado = "El numero " + numeroElegido + " es divisible entre ";
+
+                divisoresResultado.forEach(divisor => {
+                    resultado += divisor;
+
+                    (divisor != divisoresResultado[divisoresResultado.length - 1]) ? resultado += ", " : "";
+                })
+            } else {
+                resultado += "El numero " + numeroElegido + " no es divisible entre 2, 3, 5, 10"
+            }
+
+
+
+            return resultado
+        }
+
+        function esDivisible(dividendo, divisor) {
+
+            return dividendo % divisor == 0;
+
+        }
+
+        function pedirNumero() {
             let resultado;
-            do{
+
+            do {
                 resultado = prompt("Escribe un numero entre 1 y 100");
 
-            }while(!((resultado > MINIMO) && (resultado < MAXIMO)))
+                if (resultado != parseInt(resultado)) {
+
+                    alert("Debe introducir un numero entero");
+
+                } else if (resultado < MINIMO) {
+
+                    alert("Debe introducir un numero mayor de cero");
+
+                }else if(resultado > MAXIMO){
+
+                    alert("Debe introducir un numero menor de cien");
+                }
+
+            } while (!((resultado >= MINIMO) && (resultado <= MAXIMO) && resultado == parseInt(resultado)))
+
             return resultado
         }
     </script>
-    
+
 </body>
+
 </html>

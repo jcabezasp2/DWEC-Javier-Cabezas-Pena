@@ -10,7 +10,7 @@
 
 <body>
     <script>
-        const monedas = [200, 100, 50, 20, 10, 5, 2, 1];
+        const MONEDAS = [200, 100, 50, 20, 10, 5, 2, 1];
         var cajaMonedas = new Array();
         let cantidadInicial = pedirCantidadInicial();
         inicializaMonedas(cantidadInicial);
@@ -88,17 +88,17 @@
         function pasoAMonedas(cantidad) {
             let resultado = new Array();
             let cantidadRestante = Math.round(cantidad * 100);
-            for (let i = 0; i < monedas.length; i++) {
+            for (let i = 0; i < MONEDAS.length; i++) {
 
-                monedasRequeridas = Math.trunc(cantidadRestante / monedas[i]);
+                monedasRequeridas = Math.trunc(cantidadRestante / MONEDAS[i]);
                 if (monedasRequeridas > cajaMonedas[i]) {
                     resultado.push(cajaMonedas[i])
-                    cantidadRestante -= cajaMonedas[i] * monedas[i];
+                    cantidadRestante -= cajaMonedas[i] * MONEDAS[i];
                     cajaMonedas[i] = 0;
 
                 } else {
                     resultado.push(monedasRequeridas);
-                    cantidadRestante = Math.trunc(cantidadRestante % monedas[i]);
+                    cantidadRestante = Math.trunc(cantidadRestante % MONEDAS[i]);
                     cajaMonedas[i] -= monedasRequeridas;
                 }
 
@@ -120,15 +120,15 @@
                 resultado += "No es posible entregar la cantidad exacta con las monedas disponibles"
             } else {
                 resultado += cantidad + " euros son "
-                for (let i = 0; i < monedas.length; i++) {
+                for (let i = 0; i < MONEDAS.length; i++) {
                     if (arrayResultado[i] > 0) {
-                        resultado += arrayResultado[i] + " x " + (monedas[i] == 200 ? " 2 euros " : (monedas[i] == 100) ? "1 euro" : (monedas[i] > 1) ? monedas[i] + " céntimos" : " 1 céntimo") + " ";
+                        resultado += arrayResultado[i] + " x " + (MONEDAS[i] == 200 ? " 2 euros " : (MONEDAS[i] == 100) ? "1 euro" : (MONEDAS[i] > 1) ? MONEDAS[i] + " céntimos" : " 1 céntimo") + " ";
                     }
                 }
 
                 for (let i = 0; i < cajaMonedas.length; i++) {
                     if(cajaMonedas[i] == 0){
-                        resultado +="\n Se han agotado las monedas de " + (monedas[i] == 200 ? " 2 euros " : (monedas[i] == 100) ? "1 euro" : (monedas[i] > 1) ? monedas[i] + " céntimos" : " 1 céntimo");
+                        resultado +="\n Se han agotado las monedas de " + (MONEDAS[i] == 200 ? " 2 euros " : (MONEDAS[i] == 100) ? "1 euro" : (MONEDAS[i] > 1) ? MONEDAS[i] + " céntimos" : " 1 céntimo");
                     }
                 }
             }
@@ -138,7 +138,7 @@
 
         function inicializaMonedas(cantidadInicial) {
 
-            for (let i = 0; i < monedas.length; i++) {
+            for (let i = 0; i < MONEDAS.length; i++) {
                 cajaMonedas.push(Number.parseInt(cantidadInicial));
             }
 
@@ -147,8 +147,8 @@
         function maximoDisponible() {
             let resultado = 0;
 
-            for (let i = 0; i < monedas.length; i++) {
-                resultado += (monedas[i] * cajaMonedas[i])
+            for (let i = 0; i < MONEDAS.length; i++) {
+                resultado += (MONEDAS[i] * cajaMonedas[i])
             }
             resultado /= 100;
             return resultado;

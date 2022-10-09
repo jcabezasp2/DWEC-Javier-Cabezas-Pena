@@ -10,7 +10,7 @@
 
 <body>
     <script>
-        const monedas = [200, 100, 50, 20, 10, 5, 2, 1];
+        const MONEDAS = [200, 100, 50, 20, 10, 5, 2, 1];
         let cantidad;
         let arrayResultado;
         let cadenaResultado
@@ -59,11 +59,11 @@
         function pasoAMonedas(cantidad) {
             let resultado = new Array();
             let cantidadRestante =Math.round(cantidad * 100);
-            console.log(cantidadRestante)
-            for (let i = 0; i < monedas.length; i++) {
-                resultado.push(Math.trunc(cantidadRestante / monedas[i]));
-                cantidadRestante = cantidadRestante % monedas[i];
-                console.log(cantidadRestante);
+ 
+            for (let i = 0; i < MONEDAS.length; i++) {
+                resultado.push(Math.trunc(cantidadRestante / MONEDAS[i]));
+                cantidadRestante = cantidadRestante % MONEDAS[i];
+
 
             }
             return resultado;
@@ -71,9 +71,9 @@
 
         function toString(cantidad, arrayResultado) {
             let resultado = cantidad + " euros son "
-            for (let i = 0; i < monedas.length; i++) {
+            for (let i = 0; i < MONEDAS.length; i++) {
                 if (arrayResultado[i] > 0) {
-                    resultado += arrayResultado[i] + " x " + (monedas[i] == 200 ? " 2 euros " : (monedas[i] == 100) ? "1 euro" : (monedas[i] > 1) ? monedas[i] + " céntimos" : " 1 céntimo") + " ";
+                    resultado += arrayResultado[i] + " x " + (MONEDAS[i] == 200 ? " 2 euros " : (MONEDAS[i] == 100) ? "1 euro" : (MONEDAS[i] > 1) ? MONEDAS[i] + " céntimos" : " 1 céntimo") + " ";
                 }
             }
             return resultado;

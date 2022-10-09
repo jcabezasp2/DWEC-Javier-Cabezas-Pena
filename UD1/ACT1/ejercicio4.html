@@ -1,49 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <script>
         let valores;
-        do{
+        do {
             valores = introducirValores();
 
-        switch(valores[2]){
-            case "+": console.log(valores[0] + "+" + valores[1] + "=" + (parseInt(valores[0]) + parseInt(valores[1])))
-            break;
-            case "-": console.log(valores[0] + "-" + valores[1] + "=" + (parseInt(valores[0]) - parseInt(valores[1])))
-            break;
-            case "*": console.log(valores[0] + "*" + valores[1] + "=" + (parseInt(valores[0]) * parseInt(valores[1])))
-            break;
-            case "/": console.log(valores[0] + "/" + valores[1] + "=" + (parseInt(valores[0]) / parseInt(valores[1])))
-            break;
-            case "FIN": 
-            break;
-        }
-        }while(valores[2] != "FIN")
-        
-        
-        function validaOperador(operador){
+            switch (valores[2]) {
+                case "+": console.log(valores[0] + "+" + valores[1] + "=" + (parseInt(valores[0]) + parseInt(valores[1])))
+                    break;
+                case "-": console.log(valores[0] + "-" + valores[1] + "=" + (parseInt(valores[0]) - parseInt(valores[1])))
+                    break;
+                case "*": console.log(valores[0] + "*" + valores[1] + "=" + (parseInt(valores[0]) * parseInt(valores[1])))
+                    break;
+                case "/": console.log(valores[0] + "/" + valores[1] + "=" + (parseInt(valores[0]) / parseInt(valores[1])))
+                    break;
+                case "FIN":
+                    break;
+            }
+        } while (valores[2] != "FIN")
+
+
+        function validaOperador(operador) {
             let operandos = ["+", "-", "*", "/", "FIN"]
-            if(!operandos.includes(operador)){
+            if (!operandos.includes(operador)) {
                 alert("ERROR. Operador no valido");
             }
             return operandos.includes(operador);
         };
 
-        function divisionValida(dividendo, divisor){
-            if(divisor == 0){
+        function divisionValida(dividendo, divisor) {
+            if (divisor == 0) {
                 alert("ERROR. Divisor no valido");
             }
             return divisor != 0;
-            
+
         };
 
-        function introducirValores(){
+        function introducirValores() {
             let arrayParametros = [];
             let operadorValido
             let divisionEsValida = true;
@@ -51,24 +53,45 @@
             let operando2;
             let operador;
 
-            do{
-                
-                 operando1 = prompt("Escribe un numero");
-                 operando2 = prompt("Escribe un numero");
-                 operador = prompt("Escribe un operando");
+            do {
+
+                operando1 = pedirNumero("primer");
+                operando2 = pedirNumero("segundo");
+                operador = prompt("Escribe el operador");
 
                 operadorValido = validaOperador(operador);
-                if(operador == "/"){
-                   divisionEsValida = divisionValida(operando1, operando2);
+                if (operador == "/") {
+                    divisionEsValida = divisionValida(operando1, operando2);
                 }
 
 
-            }while(!operadorValido || !divisionEsValida)
+            } while (!operadorValido || !divisionEsValida)
             arrayParametros.push(operando1, operando2, operador)
 
             return arrayParametros;
 
         }
+
+        function pedirNumero(posicion) {
+
+            let resultado;
+
+            do {
+
+                resultado = prompt("Escribe el " + posicion + " operando");
+
+                if (resultado != parseInt(resultado)) {
+
+                    alert("Debe introducir un numero entero");
+
+                } 
+
+            } while (resultado != parseInt(resultado))
+
+            return resultado
+
+        }
     </script>
 </body>
+
 </html>
