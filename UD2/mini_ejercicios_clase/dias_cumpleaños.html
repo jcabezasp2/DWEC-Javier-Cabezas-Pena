@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let fechaNacimiento = new Date(1985, 1 - 1, 18);
+        let miCumpleanos = new Date();
+        miCumpleanos.setMonth(fechaNacimiento.getMonth());
+        miCumpleanos.setDate(fechaNacimiento.getDate());
+
+        let fechaActual = new Date();
+
+        if(fechaActual.getMonth() > fechaNacimiento.getMonth()){
+            miCumpleanos.setFullYear(fechaActual.getFullYear() + 1);
+        }else if(fechaActual.getMonth() == fechaNacimiento.getMonth()){
+            if(fechaActual.getDate >= fechaNacimiento.getDate()){
+                miCumpleanos.setFullYear(fechaActual.getFullYear() + 1);
+            }
+        }else{
+            miCumpleanos.setFullYear(fechaActual.getFullYear());
+        }
+        let diferencia = miCumpleanos.valueOf() - fechaActual.valueOf();
+        console.log("Mi cumpleaños cae en dia "+ pasarAString(miCumpleanos.getDay()));
+        const MILISEGUNDOS_EN_UN_DIA = 86400000;
+        console.log("Faltan " + Math.trunc( diferencia/ MILISEGUNDOS_EN_UN_DIA) + " dias");
+
+        function pasarAString(dia){
+            let resultado;
+            switch(dia){
+                case 0: resultado = "Lunes";
+                break;
+                case 1: resultado = "Martes";
+                break;
+                case 2: resultado = "Miercoles";
+                break;
+                case 3: resultado = "Jueves";
+                break;
+                case 4: resultado = "Viernes";
+                break;
+                case 5: resultado = "Sabado";
+                break;
+                case 6: resultado = "Domingo";
+                break;
+            }
+            return resultado;
+        }
+
+        
+    </script>
+</body>
+</html>
