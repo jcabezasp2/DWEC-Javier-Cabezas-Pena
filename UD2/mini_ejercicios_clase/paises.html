@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        principal();
+        
+        function principal(){
+            let paises = ['España', 'Andorra', 'Portugal', 'Canada'];
+            mostrarArray(paises);
+            mostrarInverso(paises);
+            mostrarOrdenado(paises);
+            anadirPaisPrincipio("Grecia", paises);
+            anadirPaisFinal("Italia", paises);
+            borrarComienzo(paises);
+            borrarFinal(paises);
+            //console.table(paises);
+        }
+
+
+
+        function mostrarArray(paises){
+            for (const iterator of paises) {
+            console.log(iterator + "\n") ;
+        }
+        }
+        
+        
+        function mostrarInverso(paises){
+           mostrarArray(paises.reverse())
+        }
+
+        function mostrarOrdenado(paises){
+            mostrarArray( paises.sort())
+        }
+
+        function anadirPaisPrincipio(pais, paises){
+            return paises.unshift(pais);
+        }
+
+        function anadirPaisFinal(pais, paises){
+            return paises.push(pais);
+        }
+
+        function borrarComienzo(paises){
+            return paises.shift();
+        }
+
+        function borrarFinal(paises){
+            return paises.pop();
+        }
+
+        
+
+    </script>
+</body>
+</html>
