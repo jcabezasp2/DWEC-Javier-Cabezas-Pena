@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+        let resultados = new Array(5);
+        resultados[0] = ['', 'Ayuntamiento', 'Polideportivo', 'Instituto', 'Mercado', 'Colegio'];
+        resultados[1] = new Array(resultados[0].length)
+        resultados[1][0] = 'PV';
+        resultados[2] = new Array(resultados[0].length);
+        resultados[2][0] = 'OV';
+        resultados[3] = new Array(resultados[0].length);
+        resultados[3][0] = 'VpSI';
+        resultados[4] = new Array(resultados[0].length);
+        resultados[4][0] =  'UPV';
+        let min = 5;
+        let max = 10;
+        for(let i = 1; i < resultados.length; i++){
+            for(let x = 1; x < resultados[i].length; x++){
+                resultados[i][x] = Math.floor(Math.random() * ((max + 1) - min) + min);
+            }
+        }
+        console.table(resultados);
+        sumarPartidos(resultados);
+        sumarSedes(resultados);
+        sumarPartidosOrdenados(resultados);
+
+        function sumarPartidos(arrayParametro){
+            document.writeln("Resultados por partidos<br>");
+            for(let i = 1; i < arrayParametro.length; i++){
+                let votos = 0;
+                resultado = "El partido" + arrayParametro[i][0] + " ha obtenido "
+                for(let x = 1; x < arrayParametro[i].length; x++){
+                    votos += arrayParametro[i][x];
+                }
+                resultado += votos + " votos<br>";
+                document.writeln(resultado);
+            }
+        }
+
+        function sumarSedes(arrayParametro){
+            document.writeln("Resultados por Sedes<br>");
+            for(let i = 1; i < arrayParametro.length; i++){
+                let votos = 0;
+                resultado = "En la sede " + arrayParametro[0][i] + " ha obtenido "
+                for(let x = 1; x < arrayParametro.length; x++){
+                    votos += arrayParametro[x][i];
+                }
+                resultado += votos + " votos<br>";
+                document.writeln(resultado);
+            }
+        }
+
+        function sumarPartidosOrdenados(arrayParametro){
+            resultado = new Map();
+            document.writeln("Partidos ordenados<br>");
+            for(let i = 1; i < arrayParametro.length; i++){
+                let votos = 0;
+                
+                for(let x = 1; x < arrayParametro[i].length; x++){
+                    votos += arrayParametro[i][x];
+                }
+                resultado.set(arrayParametro[i][0], votos)
+              }
+              resultado = new Map([...resultado.entries()].sort((a, b) => b[1] - a[1]));
+              for (let [key, value] of resultado) {
+                document.writeln(key + " ha obtenido " + value + "<br>");
+                 }
+        }
+
+    </script>
+</body>
+</html>
