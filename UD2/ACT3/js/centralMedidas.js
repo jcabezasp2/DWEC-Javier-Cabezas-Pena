@@ -1,4 +1,4 @@
-class centralMedidas {
+class CentralMedidas {
 
     constructor(medidas = new Array()){
         this._medidas = medidas;

@@ -1,5 +1,5 @@
 
-let central = new centralMedidas();
+let central = new CentralMedidas();
 console.log(central.insertaAleatorio("Santander")) ;
 central.insertaAleatorio("Oviedo");
 central.insertaAleatorio("Madrid");
