@@ -1,0 +1,70 @@
+<html>
+	<head>
+		<meta charset="UTF-8" />	
+		<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="css/estilos.css" type="text/css">
+		<title>Animales!</title>
+
+		<script>
+			    window.addEventListener("load", init);
+    
+			function init(){
+				
+		 let enlaces = document.querySelectorAll("div.gato, div.perro")
+            for(let i= 0; i < enlaces.length; i++){
+                enlaces[i].addEventListener("click", clickado);
+            }
+
+    }
+
+    function clickado(e){
+		let pulsado = e.target.className;
+		let mensaje = e.target.nextElementSibling
+		document.getElementById('ultimo').innerHTML = "Se ha pulsado un " + pulsado;
+		
+		if(mensaje.clicks == null){
+			mensaje.clicks = 1
+		}else{
+			mensaje.clicks++
+		}
+
+		mensaje.innerHTML = "Se ha pulsado "+mensaje.clicks+ " veces" 
+		
+    }
+		</script>
+	</head>
+
+	<body>		
+		<h1 id="ultimo">No se ha pulsado ningún animal</h1>
+		<div class="animal">
+			<div class="perro"> </div>
+			<p class="mensaje">Sin pulsaciones</p>
+		</div>
+
+		<div class="animal">
+			<div class="gato"> </div>
+			<p class="mensaje">Sin pulsaciones</p>
+		</div>
+
+		<div class="animal">
+			<div class="perro"> </div>
+			<p class="mensaje">Sin pulsaciones</p>
+		</div>
+
+		<div class="animal">
+			<div class="perro"> </div>
+			<p class="mensaje">Sin pulsaciones</p>
+		</div>		
+
+		<div class="animal">
+			<div class="gato"> </div>
+			<p class="mensaje">Sin pulsaciones</p>
+		</div>
+		<div class="animal">
+			<div class="gato"> </div>
+			<p class="mensaje">Sin pulsaciones</p>
+		</div>
+		
+		
+	</body>
+</html>

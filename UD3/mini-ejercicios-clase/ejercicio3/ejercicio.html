@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .oculto{
+            display: none;
+        }
+
+        .visible{
+            display: block;
+        }
+    </style>
+    <script>
+        window.addEventListener("load", init);
+        
+
+        function init(){
+            document.getElementById("enlace").addEventListener("click", cambiar)
+        }
+
+        function cambiar(){
+
+            if(document.getElementById("parrafo").className == "oculto"){
+                document.getElementById("parrafo").className = "visible";
+                document.getElementById("enlace").innerHTML = "Ocultar"
+            }else{
+                document.getElementById("parrafo").className = "oculto";
+                document.getElementById("enlace").innerHTML = "Mostrar"
+            }
+         
+        }
+    </script>
+</head>
+<body>
+    
+
+    <a href="#" id="enlace">Mostrar</a>
+    <p id="parrafo">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis quasi sed minima, incidunt non porro ex distinctio assumenda possimus, officiis voluptate neque eligendi repellendus corporis.</p>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .oculto{
+            visibility: hidden;
+        }
+
+        .visible{
+            visibility: visible;
+        }
+    </style>
+    <script>
+        window.addEventListener("load", init);
+        
+        function init(){
+            
+            let cantidad = prompt("Cuantos");
+            imprimir(cantidad);
+
+             let enlaces = document.getElementsByClassName("enlace");
+                for(let i= 0; i < enlaces.length; i++){
+                    enlaces[i].addEventListener("click", cambiar);
+                }
+
+        }
+
+        function cambiar(e){
+
+             let objetivo = e.target.id;
+             let parrafoObjetivo = "parrafo" + objetivo.substr(6)
+             
+            if(document.getElementById(parrafoObjetivo).className == "oculto"){
+                document.getElementById(parrafoObjetivo).className = "visible";
+                document.getElementById(objetivo).innerHTML = "Ocultar " + parrafoObjetivo;
+            }else{
+                document.getElementById(parrafoObjetivo).className = "oculto";
+                document.getElementById(objetivo).innerHTML = "Mostrar " + parrafoObjetivo;
+            }
+         
+        }
+
+        function imprimir(cantidad){
+                for(let i = 1; i <= cantidad; i++){
+                    document.getElementById("container").innerHTML += '<a href="#" class="enlace" id="enlace'+i+'">Ocultar parrafo'+i+'</a> <p id="parrafo'+i+'">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis quasi sed minima, incidunt non porro ex distinctio assumenda possimus, officiis voluptate neque eligendi repellendus corporis.</p>';
+                }
+            }
+    </script>
+</head>
+<body>
+    <div id="container"></div>
+
+    
+
+</body>
+</html>
