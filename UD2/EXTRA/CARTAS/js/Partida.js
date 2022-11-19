@@ -1,63 +1,51 @@
-import Baraja from "./Baraja.js";
+import Carta from "./carta.js";
+import Baraja from "./baraja.js";
+export default class Partida{
 
-export default class Partida {
-    constructor(filas = 2, columnas = 3){
-        // TODO comprobar si son pares
+    constructor(filas, columnas){
         this._filas = filas;
         this._columnas = columnas;
+        this._valoresValidos();
         this._baraja = new Baraja();
-        this._cartasSeleccionadas = this.selecciona()
-        this.baraja();
+        this._cartasSeleccionadas = [];
+        this.selecciona();
+        this.baraja(); 
         this._mazo = this.reparte();
-        this._cartaVolteada;
-        this._posicionCartaVolteada;
-        this._aciertos = 0;
+        this._cartaVolteada = {
+            fila: null,
+            columna: null
+        };
+        this._aciertos = 0; 
         this._numeroIntentos = 0;
     }
 
-    get Baraja(){
-        return this._baraja;
-    }
-
-    get CartasSeleccionadas(){
-        return this._cartasSeleccionadas;
-    }
-
-    get Mazo(){
-        return this._mazo;
-    }
-
-    get CartaVolteada(){
-        return this._cartaVolteada;
-    }
-
-    set CartaVolteada(cartaVolteada){
-        this._cartaVolteada = cartaVolteada;
-    }
-
-    get Aciertos(){
-        return this._aciertos;
-    }
-
-    set Aciertos(aciertos){
-        this._aciertos = aciertos;
-    }
-
     selecciona(){
-
-        let cantidadParejas = (this._filas * this._columnas) / 2;
-        let cartasSeleccionadas = new Array();
-        let cartaAleatoria;
-        for(let i = 1; i <= cantidadParejas; i++){
-            cartaAleatoria = this._baraja.generaCarta();
-            cartasSeleccionadas.push(cartaAleatoria);
-            cartasSeleccionadas.push(cartaAleatoria);
+        let numerParejas = (this._filas * this._columnas) / 2;
+        let carta;
+        for(let i = 1; i <= numerParejas; i++){
+            do{
+                carta = this._baraja.generaCarta();
+            }while(this._cartaEnMazo(carta))
+           this._cartasSeleccionadas.push(carta);
+           this._cartasSeleccionadas.push(carta);
         }
-        return cartasSeleccionadas;
+    }
+
+    baraja(){
+        this._cartasSeleccionadas.sort((a,b) => {
+
+            let aleatorio = this._getRandom(0 , 10);
+            if (aleatorio % 2 == 0){
+                
+                return a.toString().localeCompare(b.Nombre);
+            }else{
+                return 1;
+            }
+           
+        })
     }
 
     reparte(){
-
         let mazo = new Array();
         let fila;
         for(let i = 1; i <= this._filas; i++){
@@ -70,66 +58,48 @@ export default class Partida {
         return mazo;
     }
 
-    generaRandom(min, max) {
-        return Math.floor(Math.random() * (max - min + 1) + min);
-      }
-
-    baraja(){
-        this._cartasSeleccionadas.sort((a,b) => {
-
-            let aleatorio = this.generaRandom(0 , 10);
-            if (aleatorio % 2 == 0){
-                return 0;
-                //return a.toString().localeCompare(b.Nombre);
-            }else{
-                return b.toString().localeCompare(a.Nombre);
-            }
-           
-        })
-    }
-
     voltea(fila, columna){
-        
-            this._cartaVolteada = this._mazo[fila][columna];
-            this._numeroIntentos++;
-            this._posicionCartaVolteada = fila + columna;
+        this._cartaVolteada.fila = fila;
+        this._cartaVolteada.columna = columna;
+        this._numeroIntentos++;
+        // TODO voltea la carta?
     }
 
     compruebaAcierto(fila, columna){
-        if(this._mazo[fila][columna].compareTo(this._cartaVolteada)){
-            this._aciertos++;
-            this._mazo[fila][columna] = null;
-            this._mazo[this._posicionCartaVolteada.sbstr(0, 1)][this._posicionCartaVolteada.sbstr(1, 1)] = null;
-
-            return true;
-        }else{
-            return false;
-        }
         
-    }
-
-    hafinalizado(){
-        if(this._aciertos == (this._filas * this._columnas) / 2){
+        if(this._mazo[fila][columna] === this._mazo[this._cartaVolteada.fila][this._cartaVolteada.columna]){
+            this._aciertos++;
             return true;
-        }else{
-            return false;
         }
+        return false;
     }
 
-    cartaExiste(fila, columna){
-        if(this._filas.length < fila || this._columnas.length < columna){
+    haFinalizado(){
+        if(((this._filas * this._columnas) / 2 ) == this._aciertos){
             return true;
-        }else{
-            return false;
+        }
+        return false;
+    }
+
+    _cartaEnMazo(carta){
+
+        for(let i = 0; i < this._cartasSeleccionadas.length; i++){
+            if(this._cartasSeleccionadas[i] == carta){
+                return true;
+            }
+        }
+
+        return false;    
+    }
+
+    _valoresValidos(){
+        if(this._filas * this._columnas % 2 != 0){
+            this._filas = 2;
+            this._columnas = 3
         }
     }
 
-    mazoToConsole(){
-        for(let i = 0; i < this._mazo.length; i++){
-            console.log(this._mazo[i]);
-        }
-
+    _getRandom(min, max){
+        return Math.floor(Math.random() * (max - min + 1) + min);
     }
-
-
 }

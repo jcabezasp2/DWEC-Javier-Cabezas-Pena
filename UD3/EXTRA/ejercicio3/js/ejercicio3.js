@@ -14,9 +14,5 @@ function mostrarEtiqueta(event){
 
 
 
-
-
-
-
 init();
 
