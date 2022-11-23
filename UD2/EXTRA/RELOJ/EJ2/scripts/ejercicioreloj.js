@@ -13,7 +13,7 @@ return  (horas <10?"0":'')+ horas+":"+(minutos <10?"0":'')+minutos+":"+(segundos
 function actualizarRelojes(){
 
     let fechaActual = new Date();
-    const FECHA_VACACIONES = new Date("2023-06-27");
+    const FECHA_VACACIONES = new Date("2023-06-23");
     document.getElementById("divReloj").innerHTML= formateaHora(fechaActual);
     document.getElementById("divVacaciones").innerHTML= tiempoVacaciones(FECHA_VACACIONES);
 }

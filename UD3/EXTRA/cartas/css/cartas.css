@@ -1,0 +1,86 @@
+
+body{
+	background:url('images/bg.jpg');
+	font-family: 'Rock Salt';
+	text-align:center;
+}
+
+
+#titulo{ 
+	font-size:1.5em;
+}
+
+#tiempo, #pulsaciones{
+	font-size:.8em;
+}
+
+#juego{
+	background:url('images/tablero.jpg');
+	margin:0 auto;
+	border-radius:10px;
+	position:relative;	
+}
+
+
+.carta{
+	width:80px;
+	height:120px;
+	margin:20px;
+	position:absolute;
+}
+
+
+
+.frontal{
+	width:100%;
+	height:100%;
+	position:absolute;
+	
+	transition: all linear .3s;
+	transform: rotate3d(0,1,0,180deg);
+	
+	background-image:url("images/cartas.png");
+	
+	z-index:1;	
+}
+
+.posterior{
+	background-image:url("images/cartas.png");
+	background-position:0 -480px;
+	width:100%;
+	height:100%;
+	position:absolute;	
+	
+	z-index:2;
+	transition: all linear .3s;
+	
+}
+
+
+ .gira .frontal{
+	transform: rotate3d(0,1,0,0deg);
+	z-index:2;
+}
+
+.gira .posterior{
+	transform: rotate3d(0,1,0,180deg);
+	z-index:1;	
+}
+
+#gana{
+	background:url("images/gana_bg.jpg");
+	border-radius: 10px;
+	padding:10px;
+	font-size:.9em;
+}
+ 
+#record{
+	border:2px #CC0000 solid;
+	background-color: #FF8533;
+	border-radius:5px;
+	padding:5px;
+}
+
+.oculta{
+	opacity:0;
+}

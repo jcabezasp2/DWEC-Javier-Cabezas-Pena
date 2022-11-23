@@ -13,7 +13,7 @@ export default class CentralMedidas {
 
     insertaMedidas(ciudad, valores){
 
-        if(!this.existeCiudad(ciudad)){ // TODO comprobar 30 valores
+        if(!this.existeCiudad(ciudad)){
             return false
         }else{
             let nuevoElemento = new Array();
@@ -54,8 +54,8 @@ export default class CentralMedidas {
         let suma = 0;
         this._medidas.forEach(c => {
             if(c[0] == ciudad){
-                for(let i = 1; i <= 31; i++){
-                    suma += c[i];
+                for(let i = 1; i < 31; i++){
+                    suma += Number.parseFloat(c[i]);
                 }
             }
         });
@@ -69,9 +69,9 @@ export default class CentralMedidas {
         let totalCiudades = this._medidas.length;
 
         this._medidas.forEach(c => {
-            suma += this.mediaMedidas(c[0]);
+            suma += Number.parseFloat(this.mediaMedidas(c[0]));
         });
-        return (suma / totalCiudades);
+        return (suma / totalCiudades).toFixed(2);
     }
 
     eliminaCiudad(ciudad){
@@ -93,13 +93,13 @@ export default class CentralMedidas {
         for(let i=1; i <=30; i++){
             resultado += "<th>" + i + "</th>";
         }
-        resultado += "</tr>";
+        resultado += "<th>Media</th></tr>";
         this._medidas.forEach(linea =>{
              resultado += "<tr>";
                 linea.forEach(columna =>{
                     resultado += "<td>" + columna + "</td>";
                 })
-            resultado += "</tr>"
+            resultado += "<td>"+ this.mediaMedidas(linea[0]).toFixed(2) +"</td></tr>"
         })   
 
         resultado += "</table>"

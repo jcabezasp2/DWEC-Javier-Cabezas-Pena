@@ -1,6 +1,8 @@
+import CentralMedidas from "./centralMedidas.js";
+
 
 let central = new CentralMedidas();
-console.log(central.insertaAleatorio("Santander")) ;
+console.log(central.insertaMedidas("Santander", central.generaAleatorio())) ;
 central.insertaAleatorio("Oviedo");
 central.insertaAleatorio("Madrid");
 central.insertaAleatorio("Madrid");
