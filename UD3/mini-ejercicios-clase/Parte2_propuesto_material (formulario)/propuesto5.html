@@ -14,34 +14,38 @@
 	<form id="formulario" action="#" method="get">
 		<div class="linea_formulario">
 			<label for="nombre">Nombre</label>
-			<input type="text" name="nombre" id="nombre" />
+			<input type="text" name="nombre" id="nombre" required/>
 			<div class="limpia"> </div>
 		</div>
+		<div class="error linea_formulario" id="error_nombre"> </div>
 
 		<div class="linea_formulario">
 			<label for="apellidos">Apellidos</label>
-			<input type="text" name="apellidos" id="apellidos" />
+			<input type="text" name="apellidos" id="apellidos" required/>
 			<div class="limpia"> </div>
 		</div>
+		<div class="error linea_formulario" id="error_apellidos"> </div>
 
 		<div class="linea_formulario">
 			<label for="fecha_nacimiento">Fecha de nacimiento</label>
-			<input type="text" name="fecha_nacimiento" id="fecha_nacimiento" />
+			<input type="date" name="fecha_nacimiento" id="fecha_nacimiento" required/>
 			<div class="limpia"> </div>
 		</div>
+		<div class="error linea_formulario" id="error_fecha_nacimiento"> </div>
 
 		<div class="linea_formulario">
 			<label for="dni">DNI</label>
-			<input type="text" name="dni" id="dni" />
+			<input type="text" name="dni" id="dni" required/>
 			<div class="limpia"> </div>
 		</div>
 		<div class="error linea_formulario" id="error_dni"> </div>
 
 		<div class="linea_formulario">
-			<label for="Email">Email</label>
-			<input type="text" name="email" id="email" />
+			<label for="email">Email</label>
+			<input type="email" name="email" id="email" required/>
 			<div class="limpia"> </div>
 		</div>
+		<div class="error linea_formulario" id="error_email"> </div>
 
 		<div class="linea_formulario">
 			<label for="password">Contraseña</label>

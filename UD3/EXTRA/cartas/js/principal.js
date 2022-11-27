@@ -1,5 +1,5 @@
-import Partida from "./partida.js";
-let partida = new Partida(4, 3);  
+//import Partida from "./partida.js";
+//let partida = new Partida(4, 3);  
 window.addEventListener("load",init );
 
 
@@ -40,3 +40,30 @@ function pedirCartas(){
 function elegirCartas(){
     // TODO: implement
 }
+
+function findUniq(arr) {
+  for(let i = 0; i < arr.length; i++){   
+    arr.indexOf(arr[i], (i + 1)) //=
+    if(arr.indexOf(arr[i], (i + 1)) != -1){ 
+        
+    }else{
+        return arr[i];
+    }
+  }
+}
+
+findUniq([ 1, 1, 1, 2, 1, 1 ]) //=
+findUniq([ 1, 0, 0 ]) //=
+function findUniqa(arr) {
+    let resultado;
+  
+    for(let i = 0; i < arr.length; i++){
+      let prueba = arr.slice();
+      prueba.splice(i, 1);
+      if(!prueba.includes(arr[i])){
+          resultado =  arr[i];
+          break;
+      }
+    }
+    return resultado;
+  }
