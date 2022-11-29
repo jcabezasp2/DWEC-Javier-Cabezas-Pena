@@ -104,11 +104,5 @@ export default class Partida{
     }
 
     
-    cartaToHtml(id){ // TODO implement
-        return
-        <div class="carta" id="id"> 
-            <div class="frontal"></div>
-            <div class="posterior"></div>
-        </div>
-      }
+
 }

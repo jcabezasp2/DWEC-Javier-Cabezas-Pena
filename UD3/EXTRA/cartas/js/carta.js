@@ -27,7 +27,14 @@ export default class Carta{
       }
 
 
-       
+    toHTML(id){
+        let resultado = "<div class='carta " + this.toString() + "' id='carta" + id + "'>";
+            resultado += "<div class='frontal'></div>";
+            resultado += "<div class='posterior'></div>";
+            resultado += "</div>";
+
+        return resultado;
+    }
       
 
 }
