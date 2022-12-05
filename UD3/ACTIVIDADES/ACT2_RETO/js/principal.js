@@ -13,7 +13,17 @@ function init() {
 
     document.querySelector("#nueva").addEventListener("click", nuevaPalabra);
 
+    let dificultades = document.querySelectorAll("input[name=Dificultad]");
+
+    dificultades.forEach(radio => {
+        radio.addEventListener("click", clickRadio);
+    });
+
     document.querySelector("#finalizar").addEventListener("click", finPartida);
+
+    document.cookies = "record = 0";
+    let record = document.cookies;
+    console.log(document.cookies.substr(-1, 1));
 }
 
 
@@ -39,7 +49,14 @@ function verSolucion(event) {
     document.querySelector("#nueva").disabled = false;
 }
 
-function nuevaPalabra(event) {
+function clickRadio(event){
+    let pulsado = event.target.id;
+    let dificultad = pulsado.substr(-1, 1);
+    juego.Dificultad = dificultad;
+    nuevaPalabra();
+}
+
+function nuevaPalabra() {
     console.log(juego._aciertos);
     console.log(juego._partidas);
     juego.nuevaPalabra();
@@ -56,4 +73,9 @@ function finPartida(event) {
     document.querySelector("#finalizar").disabled = true;
     document.querySelector("#porcentaje").style.visibility = "visible";
     document.querySelector("#porcentaje").innerHTML = "Porcentaje de aciertos:" + juego.devolverPorcentaje() + "%";
+
+    if(juego.devolverPorcentaje() > document.cookies.substr(-1, 1)){
+        
+        
+    }
 }

@@ -2,7 +2,7 @@
 
 <html>
     <head>
-        <title>Palabra Oculta sin Dificultad</title>
+        <title>Palabra Oculta con Dificultad</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link rel="stylesheet" type="text/css" href="style/formulario.css" />
         <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
@@ -15,16 +15,19 @@
         
         <form id="formulario" action="#" method="get">
 
-            <div>
-                <label for="">Dificultad</label>
-                <input type="radio" name="" id="">
-                <input type="radio" name="" id="">
-                <input type="radio" name="" id="">
+            <div id="dificultad">
+                <span>Dificultad</span>
+                <input checked type="radio" name="Dificultad" id="letras4">
+                <label for="letras4">4 letras</label>
+                <input type="radio" name="Dificultad" id="letras6">
+                <label for="letras6">6 letras</label>
+                <input type="radio" name="Dificultad" id="letras8">
+                <label for="letras8">8 letras</label>
             </div>
 
             <div class="linea_formulario">
                 <label for="letras">Letras</label>
-                <input type="text" name="letras" id="letras" value="" />
+                <input readonly type="text" name="letras" id="letras" value="" />
 
                 <div class="limpia"> </div>
             </div>  

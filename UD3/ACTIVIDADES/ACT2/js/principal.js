@@ -55,5 +55,5 @@ function finPartida(event) {
     document.querySelector("#nueva").disabled = true;
     document.querySelector("#finalizar").disabled = true;
     document.querySelector("#porcentaje").style.visibility = "visible";
-    document.querySelector("#porcentaje").innerHTML = "Porcentaje de aciertos:" + juego.devolverPorcentaje() + "%";
+    document.querySelector("#porcentaje").innerHTML = "Porcentaje de aciertos:" + juego.devolverPorcentaje().toFixed(2) + "%";
 }

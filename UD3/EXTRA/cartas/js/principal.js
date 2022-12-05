@@ -5,11 +5,10 @@ window.addEventListener("load", init);
 function init() {
     // Mostrar las cartas
     // TODO reverso de las cartas
-    // TODO cambiar puntero raton cuando esta sobre una carta
     mostrarTabla();
 
     // TODO reloj
-
+    controladorReloj();
 
 
     // TODO levantar carta
@@ -48,6 +47,12 @@ function levantarCarta(event) {
     }else if(estado == "frontal"){
         console.log("Otra cosa");
     }
+
+    // TODO implement
+}
+
+function controladorReloj() {
+    let reloj = document.querySelector("#contador");
 
     // TODO implement
 }

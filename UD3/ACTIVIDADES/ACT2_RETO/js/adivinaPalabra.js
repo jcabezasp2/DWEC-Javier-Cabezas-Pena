@@ -1,12 +1,12 @@
- 
 
 export default class PalabraOculta{
 
      constructor() {
-        this._listaPalabras = ["gato", "casa", "algo", "libro", "ordenador", "botella", "programa"];
-        this._seleccionada = this.seleccionarPalabra();
+        this._listaPalabras = [["gato", "casa", "algo", "jugo", "juez", "java", "joya", "jazz", "kilo", "kiwi"], ["cambio", "fuerte", "dinero", "cuenta", "blanco", "objeto", "fuerza", "equipo", "tiempo", "lograr"], ["abstraer", "cachorro", "biografo", "aceituna", "publicar", "decorado", "blindaje", "acordeon", "edificio", "artritis"]];
+        this._seleccionada = this.seleccionarPalabra(4);
         this._partidas = 1;
         this._aciertos = 0;
+        this._dificultad = 4;
     }
 
 
@@ -22,6 +22,10 @@ export default class PalabraOculta{
         return this._aciertos;
     }
 
+    set Dificultad(dificultad){
+        this._dificultad = dificultad;
+    }
+
     nuevaPalabra(){
         this._seleccionada = this.seleccionarPalabra();
     }
@@ -35,9 +39,20 @@ export default class PalabraOculta{
     }
 
     seleccionarPalabra() {
+
+        let palabras
+        if(this._dificultad == 6){
+            palabras = this._listaPalabras[1];
+        }else if(this._dificultad == 8){
+            palabras = this._listaPalabras[2];
+        }else{
+            palabras = this._listaPalabras[0];
+        }
+
+
         let min = 0;
-        let max = this._listaPalabras.length - 1;
-        return this._listaPalabras[Math.floor(Math.random() * (max - min + 1) + min)];        
+        let max = palabras.length - 1;
+        return palabras[Math.floor(Math.random() * (max - min + 1) + min)];        
     }
 
     palabraDesordenada(){
