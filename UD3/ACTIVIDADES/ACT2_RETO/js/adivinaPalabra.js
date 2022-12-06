@@ -56,11 +56,13 @@ export default class PalabraOculta{
     }
 
     palabraDesordenada(){
-        let letras = this._seleccionada.split("");
-        letras.sort(this._desordenar);
-         
-        return letras.join("");
-
+        let resultado
+        do{
+            let letras = this._seleccionada.split("");
+            letras.sort(this._desordenar);
+            resultado = letras.join("");
+        }while(resultado == this._seleccionada);
+        return resultado;
     }
 
     _desordenar(){
@@ -68,7 +70,7 @@ export default class PalabraOculta{
     }
 
     devolverPorcentaje(){
-        return (this._aciertos / this._partidas) * 100;
+        return ((this._aciertos / this._partidas) * 100).toFixed(2);
     }
 
 }

@@ -21,9 +21,6 @@ function init() {
 
     document.querySelector("#finalizar").addEventListener("click", finPartida);
 
-    document.cookies = "record = 0";
-    let record = document.cookies;
-    console.log(document.cookies.substr(-1, 1));
 }
 
 
@@ -68,14 +65,36 @@ function nuevaPalabra() {
 }
 
 function finPartida(event) {
+    let mayorPuntuacion = getCookie("mayorPuntuacion");
+    let actual = juego.devolverPorcentaje();
     document.querySelector("#solucion").disabled = true;
     document.querySelector("#nueva").disabled = true;
     document.querySelector("#finalizar").disabled = true;
+    document.querySelectorAll("input[name=Dificultad]").forEach(a =>{
+        a.disabled = true;
+    })
     document.querySelector("#porcentaje").style.visibility = "visible";
     document.querySelector("#porcentaje").innerHTML = "Porcentaje de aciertos:" + juego.devolverPorcentaje() + "%";
-
-    if(juego.devolverPorcentaje() > document.cookies.substr(-1, 1)){
-        
-        
+    if(mayorPuntuacion === null || actual > mayorPuntuacion || actual == 100){
+        setCookie("mayorPuntuacion", juego.devolverPorcentaje());
+        document.querySelector("#record").innerHTML = "Nuevo record";
     }
+}
+
+function getCookie(nomCookie) {
+    let cook=document.cookie.split(";"); // pares de valores
+    
+    for(let i=0; i<cook.length; i++) { // revisamos todos los pares
+        let n = cook[i].split("="); // separamos nombre/valor
+        let nombre=n[0];
+        let valor =n[1];
+        if(nombre.trim()==nomCookie.trim()) // si es el buscado
+        return valor;// devolvemos su valor
+    }
+    
+    return null; // si no se encuentra = nulo
+}
+
+function setCookie(nombre, valor) {
+    document.cookie = nombre+"="+valor;
 }
