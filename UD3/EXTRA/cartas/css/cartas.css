@@ -29,7 +29,7 @@ body{
 	margin:20px;
 	position:relative; /* TODO 	Esto no estaba asi, revisar */	
 }
-.carta:hover , .posterior:hover, .frontal:hover{
+.posterior:hover{
 	cursor: pointer !important;
 }
 

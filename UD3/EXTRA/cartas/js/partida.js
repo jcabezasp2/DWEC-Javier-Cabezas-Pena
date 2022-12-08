@@ -78,7 +78,7 @@ export default class Partida{
     _cartaEnMazo(carta){
 
         for(let i = 0; i < this._cartasSeleccionadas.length; i++){
-            if(this._cartasSeleccionadas[i] == carta){
+            if(this._cartasSeleccionadas[i].equal(carta)){
                 return true;
             }
         }

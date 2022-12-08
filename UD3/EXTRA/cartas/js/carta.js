@@ -36,5 +36,12 @@ export default class Carta{
         return resultado;
     }
       
+    equal(carta){
+        if(this._palo === carta.Palo && this._nombre === carta.Nombre){
+            return true;
+        }else{
+            return false;
+        }
 
+    }
 }

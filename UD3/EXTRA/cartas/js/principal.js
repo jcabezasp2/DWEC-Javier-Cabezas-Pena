@@ -14,7 +14,6 @@ function init() {
     
 
     // levantar carta
-    // TODO actualizar pulsaciones
     // TODO comprobar acierto
     let cartas = document.querySelectorAll(".carta");
     cartas.forEach(carta => {
@@ -49,6 +48,8 @@ function levantarCarta(event) {
     let columna = this.id.substring(7,8);
     partida.voltea(fila, columna);
     document.querySelector("#contadorPulsaciones").innerHTML = partida.numeroIntentos 
+
+    setTimeout(desvoltearCarta, 3000, this.id);
     // TODO implement
 }
 
@@ -90,4 +91,11 @@ function cronometro(){
     
     controladorReloj(tiempoPasado);
     setTimeout(cronometro, 1000);
+}
+
+function desvoltearCarta(carta){
+
+    
+    carta = document.querySelector("#" +carta);
+    carta.classList.remove("gira");
 }
