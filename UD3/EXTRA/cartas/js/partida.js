@@ -19,6 +19,10 @@ export default class Partida{
         this._numeroIntentos = 0;
     }
 
+    get numeroIntentos(){
+        return this._numeroIntentos;
+    }
+
     selecciona(){
         let numerParejas = (this._filas * this._columnas) / 2;
         let carta;
@@ -32,17 +36,7 @@ export default class Partida{
     }
 
     baraja(){
-        this._cartasSeleccionadas.sort((a,b) => {
-
-            let aleatorio = this._getRandom(0 , 10);
-            if (aleatorio % 2 == 0){
-                
-                return a.toString().localeCompare(b.Nombre);
-            }else{
-                return 1;
-            }
-           
-        })
+        this._cartasSeleccionadas.sort(this._desordenar)
     }
 
     reparte(){
@@ -103,6 +97,8 @@ export default class Partida{
         return Math.floor(Math.random() * (max - min + 1) + min);
     }
 
-    
+    _desordenar(){
+        return Math.random() - 0.5;
+    }
 
 }
