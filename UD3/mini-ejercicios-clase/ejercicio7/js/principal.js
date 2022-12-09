@@ -16,7 +16,7 @@ function compruebaPrimeraVez() {
         if (localStorage.length == 0) {
             let nombre = prompt("Nombre");
             localStorage.setItem("nombre", nombre)
-            localStorage.setItem("visitas", 0);
+            sessionStorage.setItem("visitas", 0);
             document.querySelector("#saludo").innerHTML = "¡Tu primera visita, " + nombre + "!";
         }else{
             let nombre = localStorage.getItem("nombre");
@@ -27,24 +27,25 @@ function compruebaPrimeraVez() {
 }
 
 function contador(){
-    let visitas = localStorage.getItem("visitas");
+    let visitas = sessionStorage.getItem("visitas");
     document.querySelector("#contador").innerHTML = "Contador: " + visitas;
 }
 
 function incrementar(){
-    let visitas = localStorage.getItem("visitas");
-    localStorage.setItem("visitas", +visitas + 1);
+    let visitas = sessionStorage.getItem("visitas");
+    sessionStorage.setItem("visitas", +visitas + 1);
     contador()
 }
 
 function decrementar() {
-    let visitas = localStorage.getItem("visitas");
-    localStorage.setItem("visitas", +visitas - 1);
+    let visitas = sessionStorage.getItem("visitas");
+    sessionStorage.setItem("visitas", +visitas - 1);
     contador()
 }
 
 function logout() {
     localStorage.clear();
+    sessionStorage.clear();
     compruebaPrimeraVez();
     contador();
 }

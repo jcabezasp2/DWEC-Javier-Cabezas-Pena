@@ -1,10 +1,12 @@
 
 window.addEventListener("load", init);
-let listado = new ListaColores();
 
+let listado = recuperarListado();
+console.log(listado._colores);
+let ultimoValido;
 function init() {
     let color;
-    if(getCookie("color") === null){
+    if(getCookie("color") === null || getCookie("color") === "undefined"){
         color = new Color();
     }else{
         color = new Color(getCookie("color"));
@@ -31,6 +33,7 @@ function hexToRgb() {
     }else{
         let color = new Color(nuevoColor);
         listado.addColor(color.ValorHex);
+        ultimoValido = color.ValorHex;
         cargarValores(color);
         borrarError();
     }
@@ -56,6 +59,7 @@ function rgbToHex() {
         let valores = [rojo,verde,azul]
         let color = new Color(valores);
         listado.addColor(color.ValorHex);
+        ultimoValido = color.ValorHex;
         cargarValores(color);
         borrarError();
     }
@@ -75,8 +79,6 @@ function cargarValores(color){
     document.querySelector("#muestra").style.background = color.ValorHex;
 
     // LISTADO
-    console.log(listado.getNumeroColores());
-
     if(listado.getNumeroColores() > 0){
         document.querySelector("#listado").className = "visible";
         document.querySelector("#listado").innerHTML = listado.toHTML();
@@ -97,7 +99,6 @@ function borrarError(){
 }
 
 function setCookie(nombre, valor, caduca) {
-    console.log("Nombre" + nombre)
     let hoy= new Date();
     hoy.setTime(hoy.getTime()+caduca);
     let expiracion= "expires="+hoy.toUTCString();
@@ -117,8 +118,8 @@ function getCookie(nomCookie) {
 }
 
 function guardarUltimoValido(){
-    let color ="#" +  document.querySelector("#hexadecimal").value;
-    setCookie("color", color, 100000000);
+    let color = ultimoValido;
+    setCookie("color", color, 604800000);
 }
 
 function guardarListado(){
@@ -126,7 +127,13 @@ function guardarListado(){
 }
 
 function recuperarListado(){
-    if(localStorage.getItem("listado") != null ){
-        let listado = JSON.parse(localStorage.getItem("listado"));
+    let lista = JSON.parse(localStorage.getItem("listado"));
+    console.log(lista.length);
+    if(lista.length > 0){
+        console.log("A");
+        return JSON.parse(localStorage.getItem("listado"));
+    }else{
+        console.log("B");
+        return new ListaColores();
     }
 }
