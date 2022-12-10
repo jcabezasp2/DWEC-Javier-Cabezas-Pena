@@ -44,13 +44,13 @@ function rgbToHex() {
         mostrarError("El campo R tiene un valor no valido (" + rojo + ")");
         document.querySelector("#red").focus();
     }else if(!Color.esNumeroValido(verde)){
-        mostrarError("El campo G tien un valor no valido (" + verde + ")");
+        mostrarError("El campo G tiene un valor no valido (" + verde + ")");
         document.querySelector("#green").focus();
     }else if(!Color.esNumeroValido(azul)){
         mostrarError("El campo B tiene un valor no valido (" + azul + ")");
         document.querySelector("#blue").focus();
     }else{
-        let valores = [rojo,verde,azul]
+        let valores = [+rojo,+verde,+azul];
         let color = new Color(valores);
         cargarValores(color);
         borrarError();
@@ -85,7 +85,6 @@ function borrarError(){
 }
 
 function setCookie(nombre, valor, caduca) {
-    console.log("Nombre" + nombre)
     let hoy= new Date();
     hoy.setTime(hoy.getTime()+caduca);
     let expiracion= "expires="+hoy.toUTCString();
