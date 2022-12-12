@@ -1,5 +1,6 @@
 import Carta from "./carta.js";
 import Baraja from "./baraja.js";
+import Cronometro from "./cronometro.js";
 export default class Partida{
 
     constructor(filas, columnas){
@@ -17,10 +18,28 @@ export default class Partida{
         };
         this._aciertos = 0; 
         this._numeroIntentos = 0;
+        this._cronometro = new Cronometro();
     }
 
-    get numeroIntentos(){
+    get NumeroIntentos(){
         return this._numeroIntentos;
+    }
+
+    get Cronometro(){
+        return this._cronometro;
+    }
+
+    nuevaPartida(){
+        this._aciertos = 0;
+        this._numeroIntentos = 0;
+        this._cronometro = new Cronometro();
+        this.selecciona();
+        this.baraja();
+        this._mazo = this.reparte(); 
+    }
+
+    getIdCartaVolteada(){
+        return this._cartaVolteada.fila+"-"+this._cartaVolteada.columna; 
     }
 
     selecciona(){

@@ -75,6 +75,9 @@ body{
 	border-radius: 10px;
 	padding:10px;
 	font-size:.9em;
+	display: none;
+	width: fit-content;
+	margin: auto
 }
  
 #record{

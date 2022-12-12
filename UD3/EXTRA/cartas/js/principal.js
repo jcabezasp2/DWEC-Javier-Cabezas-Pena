@@ -1,20 +1,21 @@
 import Partida from "./partida.js";
 let partida = new Partida(3, 4);
 window.addEventListener("load", init);
-let horaInicio= new Date();
+let primera = true;
 
 function init() {
     // Mostrar las cartas
     mostrarTabla();
     reversoCartas();
 
+    // Reloj
+    controladorReloj()
 
-    // reloj
-    cronometro();
-    
+    // contador de pulsaciones
+    document.querySelector("#contadorPulsaciones").innerHTML = partida.NumeroIntentos;
+
 
     // levantar carta
-    // TODO comprobar acierto
     let cartas = document.querySelectorAll(".carta");
     cartas.forEach(carta => {
         carta.addEventListener("click", levantarCarta);
@@ -26,31 +27,44 @@ function init() {
 function mostrarTabla() {
 
     let tablero = document.querySelector("#juego");
-    let contador = 0;
-    var codigoHTML="<table>"
+
+    var codigoHTML="<table id='tabla'>"
     for(var i= 0; i< partida._mazo.length; i++) {
         codigoHTML+="<tr class='fila"+i+"'>"
         for(var j=0; j<partida._mazo[i].length; j++){
                 codigoHTML+="<td class='columna"+j+"'>" + partida._mazo[i][j].toHTML(i+"-"+j)+"</td>";
-                
-                contador++;
         }
         codigoHTML+="</tr>"
     }
     codigoHTML+="</table>"
-    tablero.innerHTML=codigoHTML;
+    tablero.innerHTML += codigoHTML;
 
 }
 
 function levantarCarta(event) {
-    this.className += " gira";
     let fila = this.id.substring(5,6);
     let columna = this.id.substring(7,8);
-    partida.voltea(fila, columna);
-    document.querySelector("#contadorPulsaciones").innerHTML = partida.numeroIntentos 
+    this.className += " gira";
+    if(primera){
+        console.log("A");
+        partida.voltea(fila, columna);
+        document.querySelector("#contadorPulsaciones").innerHTML = partida.NumeroIntentos 
+        primera = false;
+    }else{
+        console.log(partida.compruebaAcierto(fila,columna));
+        if(!partida.compruebaAcierto(fila,columna)){
+            console.log("B");
+            setTimeout(desvoltearCarta, 1000, this.id);
+            setTimeout(desvoltearCarta, 1000, "carta"+ partida.getIdCartaVolteada());
+        }else{
+            if(partida.haFinalizado()){
+                finDePartida();
+            }
+        }
 
-    setTimeout(desvoltearCarta, 3000, this.id);
-    // TODO implement
+        primera = true;
+    }
+    
 }
 
 function reversoCartas(){
@@ -77,20 +91,11 @@ function calcularPosicionX(valor){
     
 }
 
-function controladorReloj(tiempoPasado){
+function controladorReloj(){
     let reloj = document.querySelector("#contador");
-    tiempoPasado /= 1000;
-    let minutos = Math.trunc(tiempoPasado / 60);
-    let segundos = Math.trunc(tiempoPasado % 60);
-    reloj.innerHTML = (minutos <9? "0":"") + minutos + ":" + (segundos <9? "0":"") +  segundos;
-}
 
-function cronometro(){
-    let horaActual = new Date();
-    let tiempoPasado = horaActual.getTime() - horaInicio.getTime();
-    
-    controladorReloj(tiempoPasado);
-    setTimeout(cronometro, 1000);
+    reloj.innerHTML = partida.Cronometro.getTiempoPasado();
+    setTimeout(controladorReloj, 1000);
 }
 
 function desvoltearCarta(carta){
@@ -98,4 +103,54 @@ function desvoltearCarta(carta){
     
     carta = document.querySelector("#" +carta);
     carta.classList.remove("gira");
+}
+
+function finDePartida(){
+
+    // para cronometro
+    partida.Cronometro.setFinal();
+
+    // controlar Record
+    controlarRecord();
+
+
+    // mostrar mensaje
+    document.querySelector("#tabla").style.display = "none";
+    document.querySelector("#gana").style.display = "block";
+    document.querySelector("#tiempoEmpleado").innerHTML = partida.Cronometro.getTiempoPasado();
+
+    // TODO nueva partida
+    document.addEventListener('keydown', nuevaPartida);
+}
+
+function controlarRecord(){
+
+    if(localStorage.getItem("recordTiempo") === null){
+        document.querySelector("#record").style.display = "none";
+        localStorage.setItem("recordTiempo", partida.Cronometro.getTiempoPasado());
+        localStorage.setItem("recordPulsaciones", partida.NumeroIntentos)
+    }else if(partida.Cronometro.comprobarRecord(localStorage.getItem("recordTiempo")) ){
+        document.querySelector("#record").style.display = "block";
+        document.querySelector("#sinDatos").style.display = "none";
+        document.querySelector("#record").innerHTML = "nuevo record";
+        localStorage.setItem("recordTiempo", partida.Cronometro.getTiempoPasado());
+    }else if(localStorage.getItem("recordPulsaciones") > partida.NumeroIntentos){
+        document.querySelector("#record").style.display = "block";
+        document.querySelector("#sinDatos").style.display = "none";
+        document.querySelector("#record").innerHTML = "nuevo record";
+        localStorage.setItem("recordPulsaciones", partida.NumeroIntentos);
+    }else{
+        document.querySelector("#record").style.display = "none";
+        document.querySelector("#sinDatos").style.display = "none";
+    }
+}
+
+function nuevaPartida(e){
+    if(e.keyCode === 83){
+        partida = new Partida(3, 4);
+        document.querySelector("#gana").style.display = "none";
+        primera = true;
+        init();
+    }
+
 }

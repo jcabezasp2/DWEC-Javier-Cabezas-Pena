@@ -6,6 +6,7 @@
 		<script src="js/prefixfree.min.js"></script>
 		<link href='http://fonts.googleapis.com/css?family=Rock+Salt' rel='stylesheet' type='text/css'>
 		<script defer src="./js/principal.js" type="module"></script>
+		<script defer src="./js/pruebas.js" ></script>
 		<title>Juego de Cartas</title>
 	</head>
 
@@ -13,8 +14,15 @@
 		<div id="titulo">Juego de cartas</div>
 		<div id="tiempo">Tiempo: <span id="contador">00:00</span></div>
 		<div id="pulsaciones">Pulsaciones: <span id="contadorPulsaciones">0</span></div>
-		<div id="juego"></div>
-
-
+		<div id="juego">
+			<div id="gana">
+				<p>Has ganado</p>
+				<p>Tiempo empleado: <span id="tiempoEmpleado"></span></p>
+				<p id="record"></p>
+				<p id="sinDatos">No ha datos de partidas anteriores</p>
+				<p>¿Deseas jugar otra partida?</p>
+				<p>(S/N)</p>
+			</div>
+		</div>
 	</body>
 </html>
