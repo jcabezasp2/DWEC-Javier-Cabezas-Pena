@@ -45,14 +45,11 @@ function levantarCarta(event) {
     let columna = this.id.substring(7,8);
     this.className += " gira";
     if(primera){
-        console.log("A");
         partida.voltea(fila, columna);
         document.querySelector("#contadorPulsaciones").innerHTML = partida.NumeroIntentos 
         primera = false;
     }else{
-        console.log(partida.compruebaAcierto(fila,columna));
         if(!partida.compruebaAcierto(fila,columna)){
-            console.log("B");
             setTimeout(desvoltearCarta, 1000, this.id);
             setTimeout(desvoltearCarta, 1000, "carta"+ partida.getIdCartaVolteada());
         }else{
@@ -60,7 +57,7 @@ function levantarCarta(event) {
                 finDePartida();
             }
         }
-
+        console.log(partida._aciertos)
         primera = true;
     }
     
