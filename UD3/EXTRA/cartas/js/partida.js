@@ -75,11 +75,10 @@ export default class Partida{
         this._cartaVolteada.fila = fila;
         this._cartaVolteada.columna = columna;
         this._numeroIntentos++;
-        // TODO voltea la carta?
     }
 
     compruebaAcierto(fila, columna){
-        
+        // TODO usar carta equal
         if(this._mazo[fila][columna] === this._mazo[this._cartaVolteada.fila][this._cartaVolteada.columna]){
             this._aciertos++;
             return true;

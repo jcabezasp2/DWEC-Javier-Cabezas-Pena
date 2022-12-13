@@ -21,7 +21,6 @@ function init() {
         carta.addEventListener("click", levantarCarta);
     });
 
-
 }
 
 function mostrarTabla() {
@@ -118,8 +117,7 @@ function finDePartida(){
     document.querySelector("#tabla").style.display = "none";
     document.querySelector("#gana").style.display = "block";
     document.querySelector("#tiempoEmpleado").innerHTML = partida.Cronometro.getTiempoPasado();
-
-    // TODO nueva partida
+    // Nueva partida
     document.addEventListener('keydown', nuevaPartida);
 }
 
@@ -147,10 +145,7 @@ function controlarRecord(){
 
 function nuevaPartida(e){
     if(e.keyCode === 83){
-        partida = new Partida(3, 4);
-        document.querySelector("#gana").style.display = "none";
-        primera = true;
-        init();
+        location.reload();
     }
 
 }

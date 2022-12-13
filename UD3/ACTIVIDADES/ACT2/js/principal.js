@@ -57,3 +57,5 @@ function finPartida(event) {
     document.querySelector("#porcentaje").style.visibility = "visible";
     document.querySelector("#porcentaje").innerHTML = "Porcentaje de aciertos:" + juego.devolverPorcentaje().toFixed(2) + "%";
 }
+
+// La gestion de cookies esta en el reto

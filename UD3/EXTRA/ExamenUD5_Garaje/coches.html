@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xml:lang="es">
+	<head>
+		<title>Ejercicio Garaje</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="author" content="María Rodríguez Fernández">
+		<link rel="stylesheet" type="text/css" href="style/formulario.css" />
+		<script src="js/coche.js"> </script>
+		<script src="js/garaje.js"> </script>
+		<script src="js/formulario.js"></script>
+	</head>
+
+	<body>
+		<h1>Garaje</h1>	
+		<form id="formulario"> 
+		
+		    <!-- div informacion -->
+			<div id="informacion" class="linea_formulario"></div>
+			
+			<!--campo RADIO BUTTON marca -->
+			<div class="linea_formulario">
+			
+				<label for="marca">Marca</label>
+				<div class="botones">
+				  <input type= "radio" name="marca" id="seat" value="seat" checked="checked" /><span>Seat</span>
+				  <input type= "radio" name="marca" id="renault" value="renault" /><span>Renault</span>
+				  <input type= "radio" name="marca" id="citroen" value="citroen" /><span>Citroen</span>			  
+				</div>
+				
+				<div class="limpia"> </div>
+			</div>
+			
+			<!-- campo texto Modelo -->
+			<div class="linea_formulario">			
+				<label for="nombre">Modelo</label>
+				<input type="text" name="modelo" id="modelo"  />
+				
+				<div class="limpia"> </div>
+			</div> 
+			
+			<!-- campo texto Matricula-->
+			<div class="linea_formulario">
+				<label for="matricula">Matrícula</label>
+				<input type="text" name="matricula" id="matricula"  />
+				
+				<div class="limpia"> </div>
+			</div>  		
+			
+			<!-- campo SELECT color-->
+			<div class="linea_formulario">
+				<label for="color">Color</label>
+				<select name="color" id="color">
+					<option selected value="none">Elige uno...</option>			
+					<option  value="rosa">Rosa</option>
+					<option value="amarillo">Amarillo</option>
+					<option value="verde">Verde</option>
+					<option value="blanco">Blanco</option>
+					<option value="gris">Gris</option>				
+				</select>	
+				<div class="limpia"> </div>
+			</div>  		
+						
+			
+			<!-- botones -->
+			<div class="linea_formulario">	
+				<input type="button" id="guardar" value="Guardar coche" />			
+				<input type="button" id="eliminar" value="Eliminar coche" />		
+				<div class="limpia"> </div>
+			</div>
+			
+			<!-- div listado -->
+			<div id="listado" class="linea_formulario">
+				<p>No hay coches en el garaje </p> 
+			</div>
+
+	    </form>
+	</body>
+</html>

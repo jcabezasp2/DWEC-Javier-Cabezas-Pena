@@ -1,0 +1,101 @@
+*{
+	font-family: 'Roboto', sans-serif;
+}
+
+
+@font-face{
+	font-family: "Roboto";
+	src: url("fonts/Roboto-Regular.ttf");
+}
+
+@font-face{
+	font-family: "Roboto";
+	src: url("fonts/Roboto-Regular.eot");
+}
+
+#formulario .linea_formulario{
+	margin:15px;
+	width:500px;
+}
+
+#formulario .linea_formulario label{
+	float:left;
+	width:25%;
+}
+
+
+#formulario .linea_formulario input[type="text"], 
+#formulario .linea_formulario input[type="password"], 
+#formulario .linea_formulario input[type="submit"],
+#formulario .linea_formulario select,
+#formulario .linea_formulario textarea,
+#formulario .linea_formulario button
+{
+	float:left;
+	width:60%;
+	padding:2px;
+}
+
+
+#formulario .botones{
+	margin:0 auto;
+}
+
+#formulario input:focus {
+	border:2px solid black;
+	outline:0px;
+	background-color:#FFA31A;
+}
+
+
+#formulario select{
+	border:2px solid black;
+	outline:0px;
+	background-color:#E6E6E6;
+}
+
+#formulario select:focus{
+	border:2px solid black;
+	outline:0px;
+	background-color:#FFA31A;
+}
+
+.limpia{
+	clear:both;
+}
+
+#listado{
+	padding-left:20px;
+	background-repeat:no-repeat;
+	background-position: 5px center;
+	color:#00793d;
+	padding:5px;
+	padding-left:25px;
+	background-color:rgba(0,150,0,0.2);
+	border-radius:2px;
+	margin:15px;
+	width:500px;
+	border:2px solid #00793D;
+}
+
+#informacion{
+	padding-left:20px;
+	background-repeat:no-repeat;
+	background-position: 5px center;
+	color:#00793d;
+	padding:5px;
+	padding-left:25px;
+	background-color:rgba(200,150,200,0.2);
+	border-radius:2px;
+	margin:15px;
+	display:none;
+}
+
+.coche{
+	border:2px solid #00793D;
+	width:100px;
+	display:inline-block;
+	margin:10px;
+	background-color:white;
+	padding:10px;
+}
