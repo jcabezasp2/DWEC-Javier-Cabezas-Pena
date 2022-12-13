@@ -7,3 +7,15 @@ export function getRandomInt(min, max) {
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
+  // Con unos pequeños cambios sirve para recoger cualquier input radio
+  export function validaGenero(){
+    let resultado;
+    document.querySelectorAll("input[name=genero]").forEach(a =>{
+        if(a.checked){
+            resultado = a.value;
+        }
+    });
+
+    return resultado;
+}
+
