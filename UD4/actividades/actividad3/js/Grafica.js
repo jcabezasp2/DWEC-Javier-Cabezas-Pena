@@ -5,9 +5,8 @@ export default class Grafica{
     }
 
     insertar(etiqueta, valor){
-        if(!this._coleccion.has(etiqueta)){
-            this._coleccion.set(etiqueta, valor);
-            return true;
+        if(this._coleccion.set(etiqueta, valor)){
+           return true;           
         }
         return false;
     }
@@ -29,8 +28,12 @@ export default class Grafica{
     }
 
     valorMaximo(){
-        let valores = Array.from(this._coleccion.values());
-        return Math.max(valores);
+        let valores = Array.from(this._coleccion.values());        
+        return Math.max(...valores);
+    }
+
+    contiene(etiqueta){
+    return this._coleccion.has(etiqueta)? true : false;    
     }
 
 }
