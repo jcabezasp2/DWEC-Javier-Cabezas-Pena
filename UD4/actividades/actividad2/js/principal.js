@@ -45,10 +45,10 @@ function manejadorRaton(event){
 
 
 function manejadorTeclado(event){
-    console.log(event.code);
-    let tecla = event.keyCode;
-    const derecha = 37;
-    const izquierda = 39;
+    let tecla = event.key;
+    console.log(tecla);
+    const derecha = 'ArrowLeft';
+    const izquierda = 'ArrowRight';
     
     if(tecla === derecha){
         galeria.anteriorPosicion();
@@ -65,7 +65,7 @@ function manejarBotones(numero){
     let siguente = document.querySelector('#siguiente');
     let ultima = document.querySelector('#ultima');
 
-    const ultimaPosicion = galeria.numeroImagenes() -1;
+    const ultimaPosicion = galeria.numeroImagenes();
     switch(+numero){
         case 1:
             primera.classList.add('deshabilitado');

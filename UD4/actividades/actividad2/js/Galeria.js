@@ -17,7 +17,7 @@ export default class Galeria {
 
     inicializaGaleria(numeroImagenes) {
 
-        for (let i = 0; i < numeroImagenes; i++) {
+        for (let i = 1; i <= numeroImagenes; i++) {
             this._galeria.push('./images/foto' + i + '.jpg');
         }
         this.posicionAleateoria();
@@ -25,7 +25,7 @@ export default class Galeria {
     }
 
     posicionAleateoria(){
-        this._cursor = Math.floor(Math.random() * this._galeria.length) + 1;
+        this._cursor = Math.floor(Math.random() * this._galeria.length);
         return this.ruta();
     }
 
@@ -35,12 +35,12 @@ export default class Galeria {
     }
 
     primeraPosicion() {
-        this._cursor = 1;
+        this._cursor = 0;
         return this.ruta();
     }
 
     anteriorPosicion() {
-        if( this._cursor > 1){
+        if( this._cursor > 0){
             this._cursor--;
         }
         return this.ruta();
