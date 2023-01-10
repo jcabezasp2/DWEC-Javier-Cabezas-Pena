@@ -3,8 +3,6 @@ import Tablero from './tablero.js';
 var tablero = new Tablero();
 window.addEventListener('load', init);
 
-let seleccionado;
-
 function init() {
 
     crearEstructura();
@@ -16,7 +14,8 @@ function init() {
 
     let cuadrados = document.querySelectorAll(`.celdadibujo`);
     cuadrados.forEach(cuadrado => {
-        cuadrado.addEventListener('click', clickCuadrado)
+        cuadrado.addEventListener('click', clickCuadrado);
+        cuadrado.addEventListener('mouseover', pintar);
     })
 
 }
@@ -53,7 +52,7 @@ function crearEstructura() {
     let etiqueta = document.createElement('h5');
     etiqueta.appendChild(document.createTextNode('Estado del pincel:'));
     let estatus = document.createElement('span');
-    estatus.setAttribute('div', 'status');
+    estatus.setAttribute('id', 'status');
     estatus.appendChild(document.createTextNode(tablero.estado));
     estado.appendChild(etiqueta);
     etiqueta.appendChild(estatus);
@@ -77,21 +76,43 @@ function crearEstructura() {
 
     contenedor.appendChild(zonaDibujo);
 
-
-
 }
 
 function seleccionar(event){
-
+    
     let objetivo = document.querySelector(`#${this.id}`)
-    if(seleccionado){
-        document.querySelector(`#${seleccionado}`).classList.remove('seleccionado');
+    try{
+        document.querySelector(`.seleccionado`).classList.remove('seleccionado');
+    }finally{
+        objetivo.classList.add('seleccionado');
+        tablero.colorSeleccionado = this.id.substring(5).trim();
     }
-    objetivo.classList.add('seleccionado');
-    seleccionado = this.id;
+
 }
 
 
 function clickCuadrado(event){
-    console.log(this.id);
+    if(tablero.estado == 'inactivo'){
+        tablero.estado = true;
+        let status = document.querySelector(`#status`);
+        status.textContent = 'Activo';
+        status.style.color = 'red';
+    }else{
+        tablero.estado = false;
+        let status = document.querySelector(`#status`);
+        status.textContent = 'Desactivo';
+        status.style.color = 'black';
+    }
+
+}
+
+function pintar(event){
+    if(tablero.estado == 'activo'){
+        let cuadrado = document.querySelector(`#${this.id}`);
+        cuadrado.style.backgroundColor = tablero.colorSeleccionado;
+    }  
+}
+
+function interruptor(status){
+
 }

@@ -29,7 +29,7 @@ export default class Tablero{
     }
 
     get colorSeleccionado(){
-            return  color(this._colorSeleccionado);
+            return  this.color(this._colorSeleccionado);
     }
 
     set colorSeleccionado(val){
@@ -38,7 +38,7 @@ export default class Tablero{
 
     color(val){
         let color;
-        switch(val){
+        switch(+val){
             case 1: 
             color = '#F00';
             break;
@@ -58,6 +58,7 @@ export default class Tablero{
             color = '#FFF';
             break;
         }
+
         return color;
     }
 
