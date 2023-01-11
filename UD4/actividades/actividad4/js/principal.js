@@ -2,7 +2,7 @@ import Tablero from './tablero.js';
 
 var tablero = new Tablero();
 window.addEventListener('load', init);
-
+console.log(tablero.filas);
 function init() {
 
     crearEstructura();
@@ -53,7 +53,7 @@ function crearEstructura() {
     etiqueta.appendChild(document.createTextNode('Estado del pincel:'));
     let estatus = document.createElement('span');
     estatus.setAttribute('id', 'status');
-    estatus.appendChild(document.createTextNode(tablero.estado));
+    estatus.appendChild(document.createTextNode(" Sin seleccionar"));
     estado.appendChild(etiqueta);
     etiqueta.appendChild(estatus);
     contenedor.appendChild(estado);
@@ -86,33 +86,31 @@ function seleccionar(event){
     }finally{
         objetivo.classList.add('seleccionado');
         tablero.colorSeleccionado = this.id.substring(5).trim();
+        let status = document.querySelector(`#status`);
+        status.textContent = "sin activar";
+        status.style.color = tablero.colorSeleccionado;
     }
 
 }
 
 
 function clickCuadrado(event){
-    if(tablero.estado == 'inactivo'){
+    if(!tablero.estado){
         tablero.estado = true;
         let status = document.querySelector(`#status`);
-        status.textContent = 'Activo';
-        status.style.color = 'red';
+        status.textContent = ' Activo';
     }else{
         tablero.estado = false;
         let status = document.querySelector(`#status`);
-        status.textContent = 'Desactivo';
+        status.textContent = ' Sin activar';
         status.style.color = 'black';
     }
 
 }
 
 function pintar(event){
-    if(tablero.estado == 'activo'){
+    if(tablero.estado){
         let cuadrado = document.querySelector(`#${this.id}`);
         cuadrado.style.backgroundColor = tablero.colorSeleccionado;
     }  
-}
-
-function interruptor(status){
-
 }

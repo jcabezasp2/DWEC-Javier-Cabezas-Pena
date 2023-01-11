@@ -1,39 +1,46 @@
 export default class Tablero{
 
+    #numeroColores;
+    #filas;
+    #columnas;
+    #estado;
+    #colorSeleccionado;
+
+
     constructor(numeroColores = 6, filas = 40, columnas = 40){
-        this._numeroColores = numeroColores;
-        this._filas = filas;
-        this._columnas = columnas;
-        this._estado = false;
-        this._colorSeleccionado;
+        this.#numeroColores = numeroColores;
+        this.#filas = filas;
+        this.#columnas = columnas;
+        this.#estado = false;
+        this.#colorSeleccionado;
     }
 
     get numeroColores(){
-        return this._numeroColores;
+        return this.#numeroColores;
     }
 
     get filas(){
-            return this._filas;
+            return this.#filas;
         }
 
     get columnas(){
-        return this._columnas;
+        return this.#columnas;
     }
 
     get estado(){
-        return this._estado? 'activo' : 'inactivo';
+        return this.#estado;
     }
 
     set estado(val){
-        this._estado = val;
+        this.#estado = val;
     }
 
     get colorSeleccionado(){
-            return  this.color(this._colorSeleccionado);
+            return  this.color(this.#colorSeleccionado);
     }
 
     set colorSeleccionado(val){
-        this._colorSeleccionado = val;
+        this.#colorSeleccionado = val;
     }
 
     color(val){

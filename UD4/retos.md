@@ -9,3 +9,9 @@
 ##### Parte 1
 - Reto diapositiva 25
     https://github.com/jcabezasp2/DWEC-Javier-Cabezas-Pena/tree/main/UD4/mini_ejercicios_clase/Parte1_reto_diapositiva25
+
+
+#### EXTRAS
+
+ -Aplicacion de dibujo libre
+ 
