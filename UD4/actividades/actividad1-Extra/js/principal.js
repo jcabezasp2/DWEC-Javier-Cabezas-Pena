@@ -9,11 +9,8 @@ let menos = document.querySelector('#decrease');
 let mas = document.querySelector('#increase');
 let color = document.querySelector('#color');
 let borrar = document.querySelector('#clear');
-let coordenadas = { // TODO cambiar valores por las coordenadas del raton
-    x: 0,
-    y: 0
-};
-console.log(coordenadas.x);
+let posicion;
+let pintar = false;
 function init() {
 
     // Cambiar grosor
@@ -23,17 +20,12 @@ function init() {
     // Cambiar color
     color.addEventListener('blur', cambiarColor);
 
-
-
     // Borrar
-
+    borrar.addEventListener('click', borrarCanvas);
 
     // Dibujar
+    canvas.addEventListener('mousemove', coordenadasRaton);
     canvas.addEventListener('mousedown', dibujar);
-    canvas.addEventListener('mouseup', dibujar);
-
-    console.log(contexto);
-    
 }
 
 function cambiarGrosor(event) {
@@ -60,5 +52,31 @@ function cambiarColor(event) {
 }
 
 function dibujar(event) {
+    //beginPath, moveTo, lineTo, stroke, clearRect
+    pintar = true;
+    contexto.beginPath();
+    canvas.addEventListener('mousemove', (event)=>{
+        console.log('movido');
+        contexto.lineTo(posicion.x, posicion.y);
+        if(pintar){
+            contexto.stroke();
+        }
 
+    });
+    canvas.addEventListener('mouseup', (event)=>{
+        pintar = false;
+    });  
+
+}
+
+function coordenadasRaton(evt) {
+    let ClientRect = canvas.getBoundingClientRect();
+      posicion = { //objeto
+      x: Math.round(evt.clientX - ClientRect.left),
+      y: Math.round(evt.clientY - ClientRect.top)
+  }
+}
+
+function borrarCanvas() {
+    contexto.clearRect(0, 0, canvas.width, canvas.height);
 }
