@@ -81,7 +81,7 @@
 /************************** Panel de botones de un propietario ************************* */
 
 
-.edificio .pisos .propietario botones{
+.edificio .pisos .propietario .botones{
     display:block;
     margin:0 auto;
     clear:left;

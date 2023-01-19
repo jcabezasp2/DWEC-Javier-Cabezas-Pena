@@ -5,7 +5,7 @@ import Inmobiliaria from "./inmobiliaria.js";
 
 const FORMULARIO = document.querySelector('#formulario');
 let inmobiliaria = new Inmobiliaria();
-
+let objetivo;
 window.addEventListener('load', init);
 
 
@@ -20,6 +20,27 @@ function init(){
     importarPropietarios();
     inmobiliaria.edificios.forEach(edificio => {
         mostrarEdificio(edificio);
+    });
+
+    //Manejadores de botones
+    let anadirBoton = document.querySelector('#formulario-aniadir');
+    anadirBoton.addEventListener('click', (event) => {
+        event.preventDefault();
+        insercionOModificacion(objetivo);
+    });
+    
+    let modificarBoton = document.querySelector('#formulario-modificar');
+    modificarBoton.disabled = false;
+    modificarBoton.addEventListener('click', (event) =>{
+        event.preventDefault();
+        insercionOModificacion(objetivo);
+    });
+
+    let cerrarBoton = document.querySelector('#formulario-cerrar');
+    cerrarBoton.addEventListener('click', (event) =>{
+        event.preventDefault();
+        borrarFormulario();
+        FORMULARIO.style.display = "none";
     });
     
 }
@@ -119,7 +140,7 @@ function mostrarPropietario(propietario, cuantoOcupa, edificio, planta, puerta){
 
 // funciones manejadoras edificio
 function borrarPropietario(event){
-    let objetivo = this.parentNode.parentNode;
+    objetivo = this.parentNode.parentNode;
     let planta = objetivo.getAttribute('data-planta');
     let puerta = objetivo.getAttribute('data-puerta');
     let cuantoOcupa = objetivo.getAttribute('data-cuantoOcupa');
@@ -133,7 +154,7 @@ function agregarPropietario(event){
     //Visualizacion del formulario
     FORMULARIO.style.display = "block";
 
-    let objetivo = this.parentNode.parentNode;
+    objetivo = this.parentNode.parentNode;
     let planta = objetivo.getAttribute('data-planta');
     let puerta = objetivo.getAttribute('data-puerta');
     
@@ -143,20 +164,9 @@ function agregarPropietario(event){
     //Manejadores de botones
     let anadirBoton = document.querySelector('#formulario-aniadir');
     anadirBoton.disabled = false;
-    anadirBoton.addEventListener('click', (event) =>{
-        event.preventDefault();
-        insercionOModificacion(objetivo);
-    });
     
     let modificarBoton = document.querySelector('#formulario-modificar');
     modificarBoton.disabled = true;
-
-    let cerrarBoton = document.querySelector('#formulario-cerrar');
-    cerrarBoton.addEventListener('click', (event) =>{
-        event.preventDefault();
-        borrarFormulario();
-        FORMULARIO.style.display = "none";
-    });
 }
 
 function modificarPropietario(event){
@@ -164,7 +174,7 @@ function modificarPropietario(event){
     //Visualizacion del formulario
     FORMULARIO.style.display = "block";
 
-    let objetivo = this.parentNode.parentNode;
+    objetivo = this.parentNode.parentNode;
     let planta = objetivo.getAttribute('data-planta');
     let puerta = objetivo.getAttribute('data-puerta');
     document.querySelector('#planta').value = planta;
@@ -179,23 +189,13 @@ function modificarPropietario(event){
     document.querySelector('#genero-hombre').checked = propietario.genero == "hombre";
     document.querySelector('#genero-mujer').checked = propietario.genero == "mujer";
 
-    //Manejadores de botones
+    //botones
     let anadirBoton = document.querySelector('#formulario-aniadir');
     anadirBoton.disabled = true;
     
     let modificarBoton = document.querySelector('#formulario-modificar');
     modificarBoton.disabled = false;
-    modificarBoton.addEventListener('click', (event) =>{
-        event.preventDefault();
-        insercionOModificacion(objetivo);
-    });
 
-    let cerrarBoton = document.querySelector('#formulario-cerrar');
-    cerrarBoton.addEventListener('click', (event) =>{
-        event.preventDefault();
-        borrarFormulario();
-        FORMULARIO.style.display = "none";
-    });
 }
 
 function insercionOModificacion(objetivo){
