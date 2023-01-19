@@ -55,7 +55,7 @@ export default class Edificio{
     agregaPlantasYPuertas(nPuertas, nPlantas = 1){
         for(let i = 0; i < nPlantas; i++){
             let planta = new Array(nPuertas)
-            planta.fill(null); //TODO hace falta?
+            planta.fill(null);
             this.#plantas.push(planta);
         }
         
@@ -63,8 +63,13 @@ export default class Edificio{
 
     agregaPropietario(propietario, planta, puerta){
         let propietarioPuerta = new Propietario(propietario.nombre, propietario.genero, propietario.miembros);
-        this.#plantas[planta][puerta] = propietarioPuerta; 
+        this.#plantas[planta-1][puerta-1] = propietarioPuerta; 
     }
+
+    borraPropietario(planta, puerta){
+        this.#plantas[planta-1][puerta-1] = null;
+    }
+
 
     getNumeroPlantas(){
         return this.#plantas.length;
@@ -76,7 +81,7 @@ export default class Edificio{
     }
 
     getPropietario(planta, puerta){
-        return this.#plantas[planta][puerta];
+        return this.#plantas[planta-1][puerta-1];
     }
 
 

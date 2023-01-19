@@ -1,39 +1,39 @@
 export default class Propietario{
 
-    #nombre;
-    #genero;
-    #miembros;
-
     constructor(nombre, genero, miembros){
-            this.#nombre = nombre;
-            this.#genero = genero;
-            this.#miembros = miembros;
+            this.nombre = nombre;
+            this.genero = genero;
+            this.miembros = miembros;
     }
 
     //getters
-    get nombre(){
-        return this.#nombre;
+    get Nombre(){
+        return this.nombre.split(" ")[0];
     }
 
-    get genero(){
-        return this.#genero;
+    get Apellido(){
+        return this.nombre.split(" ").splice(1).join(" ");
     }
 
-    get miembros(){
-        return this.#miembros;
+    get Genero(){
+        return this.genero;
+    }
+
+    get Miembros(){
+        return this.miembros;
     }
 
     //setters
-    set nombre(nombre){
-        this.#nombre = nombre;
+    set Nombre(nombre){
+        this.nombre = nombre;
     }
 
-    set genero(genero){
-        this.#genero = genero;
+    set Genero(genero){
+        this.genero = genero;
     }
 
-    set miembros(miembros){
-        this.#miembros = miembros;
+    set Miembros(miembros){
+        this.miembros = miembros;
     }
 
 }
