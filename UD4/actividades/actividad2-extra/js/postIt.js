@@ -2,13 +2,13 @@ export default class PostIt {
 
     #id;
     #mensaje;
-    #cadena;
+    #imagen;
     #localizacion;
 
-    constructor(id, mensaje, cadena, localizacion) {
+    constructor(id, mensaje, imagen, localizacion) {
         this.#id = id;
         this.#mensaje = mensaje;
-        this.#cadena = cadena;
+        this.#imagen = imagen;
         this.#localizacion = localizacion;
     }
 
@@ -21,13 +21,14 @@ export default class PostIt {
         return this.#mensaje;
     }
 
-    get cadena() {
-        return this.#cadena;
+    get imagen() {
+        return this.#imagen;
     }
 
     get localizacion() {
         return this.#localizacion;
     }
+    
     //Setters
     set id(id) {
         this.#id = id;
@@ -37,8 +38,8 @@ export default class PostIt {
         this.#mensaje = mensaje;
     }
 
-    set cadena(cadena) {
-        this.#cadena = cadena;
+    set imagen(imagen) {
+        this.#imagen = imagen;
     }
 
     set localizacion(localizacion) {
@@ -46,9 +47,20 @@ export default class PostIt {
     }
 
     //Métodos
-
     moveTo(nuevasCoordenadas) {
         this.#localizacion = nuevasCoordenadas;
+    }
+
+    save(){
+        localStorage.setItem(`${this.#id}`, JSON.stringify({id: this.#id, mensaje: this.#mensaje, imagen: this.#imagen, localizacion: this.#localizacion}));
+    }
+
+    recover(id){
+        let postIt = JSON.parse(localStorage.getItem(`${id}`));
+        this.#id = postIt.id;
+        this.#mensaje = postIt.mensaje;
+        this.#imagen = postIt.imagen;
+        this.#localizacion = postIt.localizacion;
     }
 
 
