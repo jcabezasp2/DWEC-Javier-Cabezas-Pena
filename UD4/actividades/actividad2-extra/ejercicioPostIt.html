@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="icon" href="#" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ejercicio Extra: Pizarra</title>
+        <link rel="stylesheet" href="style/estilo.css"/>
+
+        <!-- TODO: Añadir llamada a los scripts necesarios -->
+        <!-- <script src="js/postit.js"></script> -->
+        <!--<script src="js/pruebas_postit.js"></script>-->
+        <!-- <script src="js/pizarra.js"></script> -->
+        <!--<script src="js/pizarra_pruebas.js"></script>-->
+<!--         <script src="js/funciones_dom.js"></script>
+        <script src="js/ejercicioPostIt.js"></script> -->
+        <script type="module" src="js/principal.js"></script>
+    </head>
+
+    <body>
+
+        <!-- Formulario que nos permite gestionar la creación/modificación de notas.
+                 Inicialmente está oculto, se mostrará bajo demanda.
+
+                 Cuenta con campos de texto para el mensaje y la imagen.
+                 Se establecerá la caducidad de las notas a 1 mes, si bien
+                 podría habilitarse un campo para introducir la fecha.
+
+                 Cuenta con dos botones que se mostrarán/ocultarán en función de la operación
+                 que queramos hacer (Nueva Nota/Modificar Nota).
+
+                 Otra opción hubiera sido tener dos formularios distintos, que se mostrarán
+                 en función de la operación que quiero realizar.
+
+        -->
+
+        <form id="formulario" class="oculto">
+            <!-- Esto es para probar lo de las imágenes -->
+            <!--<input type="file" id="myfileinput" multiple>-->
+            <!--<input id="fileInput" type="file" />-->
+
+            <div class="linea_formulario limpia">
+                <label for="mensaje">Mensaje</label>
+                <input type="text"  id="mensaje" value="Actor secundario Bob" />
+
+            </div>
+            <div class="linea_formulario limpia">
+                <label for="imagen">Imagen</label>
+                <input type="text"  id="imagen" value="foto1.png" />
+
+            </div>
+            <div class="linea_formulario">
+                <input type="button" id="nueva-nota" value="Nueva nota" />
+                <input type="button" id="modifica-nota" value="Modifica nota" class="oculto" />
+            </div>
+        </form>
+    </body>
+</html>

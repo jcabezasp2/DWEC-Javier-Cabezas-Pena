@@ -24,7 +24,8 @@ export default class Inmobiliaria{
     }
 
     getEdificio(calle, numero){
-        return this.#edificios.find(edificio => edificio.calle == calle && edificio.numero == numero);
+        let resultado = this.#edificios.find(edificio => edificio.calle == calle && edificio.numero == numero);
+        return resultado == undefined?  null : resultado;
     }
 
 

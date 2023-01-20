@@ -1,0 +1,115 @@
+
+
+/********************************** Estilos generales ***********************************************/
+
+@font-face{
+    font-family: "Montserrat";
+    src: url("fonts/Montserrat-Regular.ttf");
+}
+
+*{
+    font-family: 'Montserrat', sans-serif;
+}
+
+.oculto{
+    visibility:hidden;
+}
+
+.visible{
+    visibility: visible;
+}
+
+/*********************************** Estilos del formulario *******************************************/
+
+#formulario{
+    border:2px solid black;
+    background-color:#F9D8C1;
+    border-radius:10px;
+    width:300px;
+    font-size:.8em;
+    position:absolute;
+}
+
+#formulario .linea_formulario{
+    margin:15px;
+    width:300px;
+}
+
+#formulario .linea_formulario label{
+    float:left;
+    width:25%;
+}
+
+
+#formulario .linea_formulario input[type="text"],
+#formulario .linea_formulario button
+{
+    float:left;
+    width:60%;
+    padding:2px;
+}
+
+#formulario .botones{
+    margin:0 auto;
+}
+
+#formulario input:focus {
+    border:2px solid black;
+    outline:0px;
+    background-color:#FFA31A;
+}
+
+#formulario .limpia:after{
+    content:"";
+    display:block;
+    clear:both;
+}
+
+
+/********************************** Estilos del PostIt ******************************************************/
+
+
+.postit{
+    width:100px;
+    height:100px;
+    position:absolute;
+    background-image:url("img/postit.png");
+    background-size:cover;
+    font-size:.8em;
+}
+
+.cierre{
+    float:right;
+    margin-right:5px;
+    margin-top:5px;
+    height:5px;
+    width:5px;
+    cursor:pointer;
+}
+
+.mensaje{
+    margin:5px;
+    float:left;
+    height:50px;
+    width:70px;
+
+}
+
+.imagen{
+    height:35px;
+    width:35px;
+    margin:0 auto;
+    background-size:contain;
+    background-repeat:no-repeat;
+    background-position:center;
+    clear:both;
+}
+
+/********************************** Estilos Auxiliares ******************************************************/
+#mainContainer {
+    /*height: 500px;*/
+}
+
+#pizarra {
+    height: 500px;
+}
