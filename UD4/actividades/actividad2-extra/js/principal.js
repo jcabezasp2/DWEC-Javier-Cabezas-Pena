@@ -18,7 +18,7 @@ function init() {
     CONTENEDOR.appendChild(titulo);
     document.querySelector('body').appendChild(CONTENEDOR);
 
-    CONTENEDOR.addEventListener('dblclick', mostrarFormulario);
+    CONTENEDOR.addEventListener('dblclick', CrearOModificarNota);
 
     BOTON_NUEVA_NOTA.addEventListener('click', crearNota);
     BOTON_MODIFICAR_NOTA.addEventListener('click', modificarNota);
@@ -33,6 +33,7 @@ function mostrarFormulario(e) {
         coordenadasRaton(e);
         FORMULARIO.style.left = posicion.x + 'px';
         FORMULARIO.style.top = posicion.y + 'px';
+        document.querySelector('#mensaje').value = '';
     }
 }
 
@@ -58,19 +59,50 @@ function recogerFormulario(){
 function crearNota(event){
     event.preventDefault();
     let datos = recogerFormulario();
+    FORMULARIO.classList.replace('visible', 'oculto');
     PIZARRA.addPostIt(contador, datos.mensaje, datos.imagen, posicion);
     mostrarNota(PIZARRA.getPostIt(contador));
     contador++;
 }
 
 function modificarNota(event){
+    //TODO adaptar para que modifique la nota
+    event.preventDefault();
+    let datos = recogerFormulario();
+    FORMULARIO.classList.replace('visible', 'oculto');
+    PIZARRA.updatePostIt(event.target.parentNode.getAttribute('data-id'), datos.mensaje, datos.imagen, posicion);
+    event.target.parentNode.remove();
+    mostrarNota(PIZARRA.getPostIt(contador));
+}
+
+
+function CrearOModificarNota(event){
+
+    mostrarFormulario(event);
+    if(event.target.id == 'pizarra'){
+
+            BOTON_NUEVA_NOTA.style.display = 'block';
+            BOTON_MODIFICAR_NOTA.style.display = 'none';
+
+
+    }else{
+        BOTON_NUEVA_NOTA.style.display = 'none';
+        BOTON_MODIFICAR_NOTA.style.display = 'block';
+
+            let nota = PIZARRA.getPostIt(event.target.parentNode.getAttribute('data-id'));
+            document.querySelector('#mensaje').value = nota.mensaje;
+            document.querySelector('#imagen').value = nota.imagen;
+
+    }
 
 }
+
 
 function mostrarNota(nota){
     // Nota
     let div = document.createElement('div');
     div.setAttribute('id', `postit-${nota.id}`);
+    div.setAttribute('data-id', nota.id);
     div.setAttribute('class', 'postit');
     div.setAttribute('draggable', 'true');
     div.style.left = posicion.x + 'px';
@@ -82,7 +114,11 @@ function mostrarNota(nota){
     boton.setAttribute('class', 'cierre');
     boton.setAttribute('id', `nota-${nota.id}`);
     boton.addEventListener('click',(event) => {
-        // TODO eliminar nota
+        let objetivo = event.target.parentNode;
+        let id = objetivo.getAttribute('data-id');
+        PIZARRA.delPostIt(id);
+        objetivo.remove();
+        
     });
     div.appendChild(boton);
 
@@ -97,6 +133,8 @@ function mostrarNota(nota){
     imagen.setAttribute('class', "imagen");
     imagen.style.backgroundImage = `url(./img/${nota.imagen})`;
     div.appendChild(imagen);
+
+    div.addEventListener('dblclick',CrearOModificarNota);
 
     CONTENEDOR.appendChild(div);
 }
