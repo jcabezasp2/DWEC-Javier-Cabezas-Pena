@@ -198,13 +198,11 @@ function coordenadasNota(evt) {
 
 function stack(coordenadas){
     let notas = document.querySelectorAll('.postit');
-    notas.forEach((nota, index) => {
-        let id = nota.getAttribute('data-id');
-        let notaCoordenadas = PIZARRA.getPostIt(id).localizacion;
-        if(notaCoordenadas.x != coordenadas.x && notaCoordenadas.y != coordenadas.y){
-            PIZARRA.updatePostIt(id, null, null, {x: coordenadas.x + 20 * index, y: coordenadas.y + 20 * index});
-            nota.remove();
-            mostrarNota(PIZARRA.getPostIt(id));
-        }
+
+    PIZARRA.postIts.forEach((nota, index) => {
+        let id = nota.id;
+        PIZARRA.updatePostIt(id, null, null, {x: coordenadas.x + (20 * index), y: coordenadas.y + (20 * index)});
+        document.querySelector(`#postit-${id}`).remove();
+        mostrarNota(PIZARRA.getPostIt(id));
     });
 }
