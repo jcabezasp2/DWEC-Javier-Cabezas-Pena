@@ -26,9 +26,9 @@ export default class Pizarra {
 
     updatePostIt(id, msg, img, coordenadas) {
         let postit = this.#postIts.find(postit => postit.id == id);
-        postit.mensaje = msg;
-        postit.imagen = img;
-        postit.localizacion = coordenadas;
+        msg != null? postit.mensaje = msg : postit.mensaje;
+        img? postit.imagen = img : postit.imagen;
+        coordenadas? postit.localizacion = coordenadas : postit.localizacion;
     }
 
     delPostIt(id) {
@@ -45,13 +45,23 @@ export default class Pizarra {
     }
 
     save(){
-        localStorage.setItem('postits', JSON.stringify(this.#postIts));
+        
+        let postits = [];
+        this.#postIts.forEach(postit => {
+            postits.push(postit.save());
+        });
+        console.log(postits);
+        localStorage.setItem('postits', JSON.stringify(postits));
     }
 
     load(){
         let postits = localStorage.getItem('postits');
         if(postits != null){
-            this.#postIts = JSON.parse(postits);
+            postits = JSON.parse(postits);
+
+            postits.forEach(postit => {
+                this.addPostIt(postit.id, postit.mensaje, postit.imagen, postit.localizacion);
+            });
         }
     }
 

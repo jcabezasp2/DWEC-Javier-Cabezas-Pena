@@ -52,15 +52,11 @@ export default class PostIt {
     }
 
     save(){
-        localStorage.setItem(`${this.#id}`, JSON.stringify({id: this.#id, mensaje: this.#mensaje, imagen: this.#imagen, localizacion: this.#localizacion}));
-    }
-
-    recover(id){
-        let postIt = JSON.parse(localStorage.getItem(`${id}`));
-        this.#id = postIt.id;
-        this.#mensaje = postIt.mensaje;
-        this.#imagen = postIt.imagen;
-        this.#localizacion = postIt.localizacion;
+       return {
+        id: this.#id,
+        mensaje: this.#mensaje,
+        imagen: this.#imagen,
+        localizacion: this.#localizacion};
     }
 
 

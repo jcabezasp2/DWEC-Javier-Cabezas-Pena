@@ -28,6 +28,7 @@
     width:300px;
     font-size:.8em;
     position:absolute;
+    z-index: 1;
 }
 
 #formulario .linea_formulario{
