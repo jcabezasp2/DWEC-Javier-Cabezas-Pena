@@ -81,6 +81,8 @@ window.onload = () => {
         }else{
             createNotification(messages[0], types[0]);
         }
+
+        respuesta.checked = false;
     })
 }
 
