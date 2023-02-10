@@ -1,15 +1,14 @@
-
 import { useContext } from 'react';
-import ChatContexto from './App';
+import {ChatContexto} from './App';
 
 function Hijo() {
 
-    const contexto = useContext(ChatContexto);
-    console.log(contexto)
+    const {mensaje, componente, anadirMensaje} = useContext(ChatContexto);
     return (
         <div>
         <h2>Hijo 1</h2>
-        <textarea name="" cols="30" rows="10" onBlur={(event)=>{}}></textarea>
+        <p>{componente + " " + mensaje}</p>
+        <textarea name="" cols="30" rows="10" onBlur={(event)=>{ anadirMensaje(event, 'Hijo 1 dice: '); event.target.value = '' }}></textarea>
         </div>
     );
   }
