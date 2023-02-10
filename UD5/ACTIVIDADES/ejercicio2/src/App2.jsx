@@ -25,7 +25,7 @@ function Lista(props){
 return(
   <>
   {listado.map((elemento, index) => {
-   return  elemento.toLowerCase().startsWith(props.buscar)? <li key={index}>{elemento}</li> : null;
+   return  elemento.toLowerCase().startsWith(props.buscar.toLowerCase())? <li key={index}>{elemento}</li> : null;
   })}
   </>
 )
