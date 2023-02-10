@@ -2,8 +2,8 @@
 
 #### crear nuevo proyecto
 
-- npx create-react-app my-app
+- npm create vite
 
 #### iniciar proyecto
 
-- npm start
+- npm run dev
