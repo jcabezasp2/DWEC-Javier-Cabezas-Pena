@@ -6,8 +6,7 @@ function IMCForm(props) {
 
     const [weight, setWeight] = useState(0);
     const [height, setHeight] = useState(0);
-    const {addData} = useContext(Contexto);
-
+    const {addData, datos} = useContext(Contexto);
     return (
         <form>
             <div className='col two'>
