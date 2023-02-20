@@ -89,9 +89,7 @@ function App() {
         }}>Deshacer</button>
       </div>
       <div className="row">
-        <Grafica 
-        etiquetas = {datos}
-        />
+        <Grafica />
       </div>
     </div>
     </Contexto.Provider>
