@@ -21,36 +21,39 @@ ChartJS.register(
         position: 'top',
       },
       title: {
-        display: true,
+        display: false,
         text: 'Grafica',
       },
     },
   };
 
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-
-let arrayFechas = [];
-let arrayImc = [];
 
 
-export const data = {
-  labels,
-  datasets: [
-    {
-      label: 'Dataset 1',
-      data: [65, 59, 80, 81, 56, 55, 40],
-      borderColor: 'rgb(255, 99, 132)',
-      backgroundColor: 'rgba(255, 99, 132, 0.5)',
-    },
-  ],
-};
 
 function Grafica() {
 
     const {datos} = useContext(Contexto);
+    let fechaActual = new Date();
+    let datosGrafica = datos.filter((dato) => dato.Imc !== undefined && dato.dateValue.getDate() > fechaActual.getDate() - 7);
+    let labels = datosGrafica.map((dato) => dato.dateValue);
+    labels = labels.map((dato) => dato.getDate()+ '/' + dato.getMonth() + '/' + dato.getFullYear());
+    let arrayDatos = datosGrafica.map((dato) => dato.Imc);
+
+
+    const data = {
+      labels,
+      datasets: [
+        {
+          label: 'IMC',
+          data: arrayDatos,
+          borderColor: 'rgb(0, 50, 214)',
+          backgroundColor: 'rgba(0, 200, 214, 0.5)',
+        },
+      ],
+    };
+
     return (
         <div>
-            <h1>Entra</h1>
             <Line options={options} data={data} />
         </div>
     );
