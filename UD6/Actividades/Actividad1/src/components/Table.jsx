@@ -7,8 +7,11 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import usersArray from '../assets/UsersArrayV1';
 import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import { v4 as uuidv4 } from 'uuid';
+import { useNavigate } from 'react-router-dom';
+
 
 const columns = [
   { id: 'id',
@@ -41,11 +44,15 @@ const columns = [
 ];
 
 
-const rows = usersArray;
 
-export default function TableElement() {
+
+export default function TableElement(props) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+  const rows = props.usersArray;
+
+ const navigate = useNavigate();
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -62,8 +69,18 @@ export default function TableElement() {
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
-              <TableCell align="left" colSpan={5} sx={{color: 'blue'}}>
+              <TableCell align="left" colSpan={4} sx={{color: 'blue'}}>
                 USUARIOS
+              </TableCell>
+              <TableCell align="right" colSpan={1} sx={{color: 'blue'}}>
+                    <Button
+                        sx={{mt:3, mb:2}}
+                        type="button" 
+                        variant="contained"
+                        color="primary"
+                        onClick={()=>{navigate("/create")}}>
+                        CREAR
+                    </Button>
               </TableCell>
             </TableRow>
             <TableRow>
@@ -78,12 +95,12 @@ export default function TableElement() {
               ))}
             </TableRow>
           </TableHead>
-          <TableBody key={'table-body'}>
+          <TableBody key={uuidv4()}>
             {rows
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => {
                 return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                  <TableRow hover role="checkbox" tabIndex={-1} key={uuidv4()}>
                     {columns.map((column) => {
                       const value = row[column.id];
                       return (
