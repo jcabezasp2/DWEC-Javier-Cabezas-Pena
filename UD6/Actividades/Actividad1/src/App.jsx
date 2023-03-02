@@ -3,8 +3,8 @@ import Header from './components/Header'
 import TableElement from './components/Table'
 import UserCreate from './components/UserCreate'
 import UserEdit from './components/UserEdit'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 function App() {
 
@@ -32,6 +32,7 @@ function App() {
       method: 'PUT',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
+        'id': user.id, 
         'fname': user.fname,
         'lname': user.lname,
         'username': user.username,
@@ -41,12 +42,30 @@ function App() {
     }
     fetch(`https://www.melivecode.com/api/users/update`, opciones)
       .then(response => response.json())
-      .then(data => 
-        setUsers(users.find(user => user.id === data.user.id) = data.user)
-        ) //TODO terminar de implementar
-  }
+      .then(data => {
+        let usersCopy = [...users];
+        let userIndex = usersCopy.findIndex(user => user.id === data.user.id);
+        usersCopy[userIndex] = data.user;
+        setUsers(usersCopy);
+      });
+    }
 
-
+    function deleteUser(id){
+      let opciones = {
+        method: 'DELETE',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          'id': id, 
+        })
+      }
+      fetch(`https://www.melivecode.com/api/users/delete`, opciones)
+      .then(response => response.json())
+      .then(data => {
+        if(data.status === 'ok'){
+          chargeUsers();
+        }
+      });
+    }
 
   function chargeUsers(){
     fetch(`https://www.melivecode.com/api/users`)
@@ -65,12 +84,13 @@ function App() {
         <Routes>
           <Route path="/" element={<TableElement 
             usersArray= {users}
+            deleteUser={deleteUser}
             />} />
           <Route path="/create" element={<UserCreate
             newUser={newUser}
           />} />
           <Route path="/edit/:id" element={<UserEdit
-            
+            updateUser={updateUser}
           />} />
         </Routes>
       </Router>

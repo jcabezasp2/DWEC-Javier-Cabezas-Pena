@@ -32,7 +32,7 @@ function UserEdit(props) {
 
     function getData(){
         return {
-            id:props.id,
+            id:id,
             fname:fname,
             lname:lname,
             username:username,
@@ -51,7 +51,7 @@ function UserEdit(props) {
                 Datos del nuevo usuario:
             </Typography>
                 <form sx={{ width:'100%',marginTop:'3',}}
-                onSubmit={(event) =>{event.preventDefault(); props.newUser(getData()), navigate(-1)}}>
+                onSubmit={(event) =>{event.preventDefault(); props.updateUser(getData()), navigate(-1)}}>
                     <Grid container spacing={2}>
                         <Grid item xs={12} sm={6}>
                             <TextField

@@ -38,7 +38,7 @@ export default function Header(props) {
       <ElevationScroll {...props}>
         <AppBar>
           <Toolbar>
-            <Typography variant="h6" component="div">
+            <Typography variant="h6" component="div" >
               Aplicacion CRUD con API externa
             </Typography>
           </Toolbar>

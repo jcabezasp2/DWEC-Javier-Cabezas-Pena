@@ -77,7 +77,7 @@ export default function TableElement(props) {
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
-              <TableCell align="left" colSpan={4} sx={{color: 'blue'}}>
+              <TableCell align="left" colSpan={5} sx={{color: 'blue'}}>
                 USUARIOS
               </TableCell>
               <TableCell align="right" colSpan={1} sx={{color: 'blue'}}>
@@ -118,7 +118,7 @@ export default function TableElement(props) {
                             : column.type && column.type === 'actions'?
                              <>
                               <Button data-id={row.id} variant="outlined" onClick={(event) => {navigate(`/edit/${event.target.getAttribute('data-id')}`)}}>Editar</Button>
-                              <Button variant="outlined">Borrar</Button>
+                              <Button data-id={row.id} variant="outlined" onClick={(event) => {props.deleteUser(event.target.getAttribute('data-id'))}}>Borrar</Button>
                             </>
                             :  value}
                         </TableCell>
