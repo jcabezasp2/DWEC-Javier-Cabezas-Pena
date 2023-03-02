@@ -9,7 +9,8 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import { v4 as uuidv4 } from 'uuid';
+import uuid from 'react-uuid';
+
 import { useNavigate } from 'react-router-dom';
 
 
@@ -40,6 +41,13 @@ const columns = [
     label: 'Nombre de usuario',
     minWidth: 170,
     align: 'center',
+  },
+  {
+    id: 'actions',
+    label: 'Acciones',
+    minWidth: 170,
+    align: 'center',
+    type: 'actions',
   },
 ];
 
@@ -95,19 +103,24 @@ export default function TableElement(props) {
               ))}
             </TableRow>
           </TableHead>
-          <TableBody key={uuidv4()}>
+          <TableBody key={uuid()}>
             {rows
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => {
                 return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={uuidv4()}>
+                  <TableRow hover role="checkbox" tabIndex={-1} key={uuid()}>
                     {columns.map((column) => {
                       const value = row[column.id];
                       return (
                         <TableCell key={column.id} align={column.align}>
                           {column.type && column.type === 'image'
                             ? <Avatar alt="avatar" src={value} />
-                            : value}
+                            : column.type && column.type === 'actions'?
+                             <>
+                              <Button data-id={row.id} variant="outlined" onClick={(event) => {navigate(`/edit/${event.target.getAttribute('data-id')}`)}}>Editar</Button>
+                              <Button variant="outlined">Borrar</Button>
+                            </>
+                            :  value}
                         </TableCell>
                       );
                     })}
